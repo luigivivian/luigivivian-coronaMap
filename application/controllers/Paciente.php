@@ -55,7 +55,7 @@ class Paciente extends CI_Controller{
         $this->dompdf->stream("Pacientes e condições", array("Attachment"=>0));
     }
 
-	public function editar($id = null)
+	public function editar($id= null)
 	{
         $id_cidade = $this->session->userdata('id_cidade');
 		if(!$id){ //lista de usuario
@@ -65,6 +65,7 @@ class Paciente extends CI_Controller{
 			$this->load->view('paciente/editar', $dados);
 		}else{
 			$paciente = $this->m_paciente->get($id, $id_cidade);
+
 			$dados['condicoes'] = $this->m_paciente->getCondicao();
 			$dados['corPino'] = $paciente['cor'];
 			$dados['lista'] = false;

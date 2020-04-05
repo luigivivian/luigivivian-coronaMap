@@ -183,7 +183,7 @@
 
             var values = $(this).serialize();
             ajaxRequest = $.ajax({
-                url: "<?= base_url();?>api/paciente/"+<?= $paciente['id']?>,
+                url: "<?= base_url();?>api/paciente/<?= $paciente['id']?>",
                 type: "put",
                 data: values
             });

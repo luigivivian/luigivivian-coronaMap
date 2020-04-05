@@ -40,7 +40,7 @@ class M_Paciente extends CI_Model
                                 from gmap_paciente u
                                 INNER JOIN gmap_tipoCondicao td
                                 ON u.idCondicao = td.id
-                                WHERE u.idCondicao = $id and u.idCidade = $idCidade");
+                                WHERE u.id = $id and u.idCidade = $idCidade");
 			if ($query->num_rows() === 1) {
 				return $query->row_array();
 			} else {

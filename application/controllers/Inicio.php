@@ -26,7 +26,9 @@ class Inicio extends CI_Controller{
 	}
 
 	public function cadastrar(){
-	    $dados = array("teste", "teste");
+        $dados['condicoes'] = $this->m_paciente->getCondicao();
+        $dados['estados'] = $this->m_estado->getAll();
+        $dados['session'] = $this->session->userdata();
 		$this->load->view('paciente/cadastrar', $dados);
 	}
 

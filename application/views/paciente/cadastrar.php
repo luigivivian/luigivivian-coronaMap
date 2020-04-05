@@ -100,6 +100,25 @@
 								</div>
 							</div>
 						</div>
+
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="data_fim_quarenta">Data término quarentena</label>
+                                    <input type="date" name="data_fim_quarenta" class="form-control" id="data_fim_quarenta" aria-describedby="data_fim_quarentaHELP">
+                                    <small id="data_fim_quarentaHELP" class="form-text text-muted">campo obrigatório</small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="numero_familiares">Número de familiares</label>
+                                    <input type="text"  name="total_familiares" class="form-control" id="numero_familiares" aria-describedby="numeroFamiliaresHELP" placeholder="Digite o número de familiares">
+                                    <small id="numeroFamiliaresHELP" class="form-text text-muted">campo obrigatório</small>
+                                </div>
+                            </div>
+                        </div>
+
 						<div class="row">
 							<div class="col">
 								<div class="form-group">
@@ -117,6 +136,30 @@
 							</div>
 						</div>
 
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Selecione seu estado</label>
+                                    <select class="custom-select" id="estado">
+                                        <option value="" disabled selected>Selecione uma opcao !</option>
+                                        <?php if(!empty($estados)):?>
+                                            <?php foreach($estados as $e){?>
+                                                <option value="<?=$e['id'];?>"><?=$e['nome']?></option>
+                                            <?php }?>
+                                        <?php endif;?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Selecione sua cidade</label>
+                                    <select class="custom-select" name="idCidade" id="cidade">
+                                        <option value="" disabled selected>Selecione uma opcao !</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
 						<div class="row">
 							<div class="col">
 								<div class="form-group">
@@ -126,6 +169,10 @@
 								</div>
 							</div>
 						</div>
+
+
+
+
 <!--						endereço modal-->
 						<div class="form-group">
 							<label for="opcoes">Selecione uma doença</label>
@@ -278,7 +325,7 @@
         //Botao modal dados paciente
 		$("#btnModalDados").click(function() {
 			if($('#endereco').val() == '' || $('#nome').val() == '' || $('#sobrenome').val() == '' || $('#datanascimento').val() == ''
-				|| $('#telefone').val() == '' || $('#rua').val() == '' || $('#numero').val() == ''){
+				|| $('#telefone').val() == '' || $('#rua').val() == '' || $('#numero').val() == '' || $('#idCondicao').val() == ''){
                 alert("Preencha todos os campos !");
                 return;
 			}
@@ -382,6 +429,26 @@
 				alert('Ocorreu algum erro ao cadastrar');
 			});
 		});
+
+
+
+        $('#estado').change(function(){
+            // get estado by id
+            var id = $("#estado").val();
+            $.ajax({
+                url:"<?= base_url();?>api/cidade/"+id,
+                dataType:'json',
+                type:"GET",
+            }).done(function(response) {
+                var data = response.response;
+                console.log(data);
+                for(var d in data){
+                    console.log(d);
+                    var options = '<option value="'+data[d].id+'">'+data[d].nome+'</option>';
+                    $('#cidade').append(options);
+                }
+            });
+        });
 
 	});
 
