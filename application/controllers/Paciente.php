@@ -55,14 +55,17 @@ class Paciente extends CI_Controller{
         $this->dompdf->stream("Pacientes e condições", array("Attachment"=>0));
     }
 
-	public function editar($id= null)
+	public function editar($id = null)
 	{
         $id_cidade = $this->session->userdata('id_cidade');
+        if($id_cidade == null){
+            redirect('usuario/logout');
+        }
 		if(!$id){ //lista de usuario
 			$pacientes = $this->m_paciente->get(null , $id_cidade);
 			$dados['lista'] = true;
 			$dados['pacientes'] = $pacientes;
-			$this->load->view('paciente/editar', $dados);
+            $this->template->load('app', 'paciente/editar', $dados);
 		}else{
 			$paciente = $this->m_paciente->get($id, $id_cidade);
 
@@ -70,7 +73,7 @@ class Paciente extends CI_Controller{
 			$dados['corPino'] = $paciente['cor'];
 			$dados['lista'] = false;
 			$dados['paciente'] = $paciente;
-			$this->load->view('paciente/editarForm', $dados);
+            $this->template->load('app', 'paciente/editarForm', $dados);
 		}
 	}
 

@@ -18,18 +18,18 @@ class Inicio extends CI_Controller{
 			$dados['condicoes'] = $this->m_paciente->getCondicao();
 			$dados['estados'] = $this->m_estado->getAll();
 			$dados['session'] = $this->session->userdata();
-			$this->load->view('visualizar', $dados);
+            $this->template->load('app', 'visualizar', $dados);
 		}else{
             $dados['estados'] = $this->m_estado->getAll();
-			$this->load->view('usuario/login', $dados);
-		}
+            $this->template->load('app', 'usuario/login', $dados);
+        }
 	}
 
 	public function cadastrar(){
         $dados['condicoes'] = $this->m_paciente->getCondicao();
         $dados['estados'] = $this->m_estado->getAll();
         $dados['session'] = $this->session->userdata();
-		$this->load->view('paciente/cadastrar', $dados);
+        $this->template->load('app', 'paciente/cadastrar', $dados);
 	}
 
 

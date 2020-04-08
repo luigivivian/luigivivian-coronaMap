@@ -1,6 +1,29 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+/*
+Applications enums
+*/
+
+
+define('CONDICAO_COVID_CONFIRMADO',5);
+define('CONDICAO_COVID_CONFIRMADO_RISCO',8);
+
+define('CONDICAO_COVID_SUSPEITO', 1);
+
+
+define('GRAFICO_CASOS_CONFIRMADOS', "CASO_CONFIRMADO");
+define('GRAFICO_CASOS_SUSPEITOS', "CASO_CONFIRMADO_RISCO");
+
+
+
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace

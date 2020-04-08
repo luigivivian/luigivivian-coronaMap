@@ -11,10 +11,15 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-
-
+    <link rel="stylesheet" href="<?= base_url('/assets/css/vendors.bundle.css');?>">
+    <link rel="stylesheet" href="<?= base_url('/assets/css/app.bundle.css');?>">
+    <link rel="stylesheet" href="<?= base_url('/assets/css/fontawesome-all.css');?>">
+    <link rel="stylesheet" href="<?= base_url('/assets/css/fa-solid.css');?>">
+    <link rel="stylesheet" href="<?= base_url('/assets/css/toastr/toastr.css');?>">
+    <link rel="stylesheet" href="<?= base_url('/assets/css/toastr/toastr.css.map');?>">
 </head>
 <style>
+
 	#map {
 		height: 98vmin;
 		width: 100%;
@@ -32,6 +37,7 @@
 		height: auto;
         width: 30%;
         border: 1px solid #D0D0D0;
+        transition: all .5s linear;
 	}
 	#optionsBox{
 		position: absolute; bottom: 2%; z-index: 99;
@@ -71,7 +77,7 @@
                     <?php if(!empty($condicoes)):?>
                         <?php foreach($condicoes as $c){ ?>
                             <div class="col col-sm-6">
-                                <p style="font-size: 15px;"><i class="fa fa-circle" style="color: <?= $c['cor']?>"></i>  <?=$c['nome']?></p>
+                                <p style="font-size: 15px;"><b><i class="fas fa-virus" style="color: <?= $c['cor']?>"></i>  <?=$c['nome']?></b></p>
                             </div>
                         <?php  }?>
                     <?php else:?>
@@ -81,17 +87,18 @@
                     <?php endif;?>
                 </div>
             </div>
+            <div>
             <?php if($this->session->userdata('adm') == 1){?>
-                <div>
-                    <h5>Opções administrativas</h5>
-                    <a class="btn btn-primary mt-2 mb-2 text-light" href="<?= base_url('paciente/editar');?>">Editar Pacientes</a>
-                    <a class="btn btn-primary mt-2 mb-2 text-light" href="<?= base_url('condicao/editar');?>" >Editar Doenças</a>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#relatorios">
+                    <h5><b>Menu</b></h5>
+                    <a class="btn btn-outline-primary mt-2 mb-2" href="<?= base_url('paciente/editar');?>">Admin área</a>
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#relatorios">
                         Relatórios
                     </button>
-                </div>
+
             <?php } ?>
-            <a class="text-light btn btn-danger ml-2 mr-2 mt-2 mb-2" href="<?= base_url('usuario/logout')?>">Sair do sistema</a>
+                <a class="btn btn-outline-danger" href="<?= base_url('usuario/logout')?>">Logout</a>
+
+            </div>
         </div>
         <div id="boxControl">
             <button type="button" class="btn btn-outline-dark" onclick="toggleBox('hide')"><i class="fa fa-arrow-up"></i></button>
@@ -133,7 +140,6 @@
                         <p class="label text-center">Todas condições e número total de pacientes por condição</p>
                         <a href="<?= base_url('Paciente/gerarPDFPacientesByCondicao'); ?>" class="btn btn-success btn-block">Gerar PDF</a>
                     </div>
-
                     <div class="mt-xl-2">
                         <p class="label text-center">Todas condições e todos pacientes</p>
                         <a href="<?= base_url('Paciente/gerarPDFCondicoesPacientes'); ?>" class="btn btn-success btn-block">Gerar PDF</a>
@@ -151,6 +157,7 @@
 	src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
+<script src="<?= base_url('/assets/js/toastr/toastr.js');?>"></script>
 <script
 	src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
 	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
@@ -217,7 +224,25 @@
 					console.log(data['response']);
 				}
 				if(data['response'] == false){
-				    alert('Nenhum paciente cadastrado com essa condição !');
+
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": 300,
+                        "hideDuration": 100,
+                        "timeOut": 3000,
+                        "extendedTimeOut": 1000,
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    toastr.warning("Nenhum paciente cadastrado !");
                 }
 				console.log(data['response']);
 			});
@@ -263,14 +288,13 @@
 				'</div>'+
 				'<h3 id="firstHeading" class="firstHeading">'+dados.nome+ ' ' +dados.sobrenome+'</h3>'+
 				'<div id="bodyContent">'+
-				'<p>Doença: '+ dados.doencanome +'</p>'+
+				'<p>Condição: <b><span style="color:'+cor+'">'+ dados.doencanome +'</span></b></p>'+
 				'<p>Descrição: '+dados.descricao +'</p>'+
 				'<p>Telefone: '+dados.telefone+'</p>'+
 				'<p>Rua: '+dados.rua+'</p>'+
 				'<p>Número: '+dados.numero+'</p>'+
 				'</div>'+
 				'</div>';
-
 			var infowindow = new google.maps.InfoWindow({
 				content: contentString
 			});
@@ -347,7 +371,7 @@
 	        $("#boxControl").html('<button type="button" class="btn btn-outline-dark" onclick="toggleBox(\'hide\')"><i class="fa fa-arrow-up"></i></button>');
         }else{
             $("#boxMenu").css("left", "90%");
-            $("#boxMenu").css("width", "3.3%");
+            $("#boxMenu").css("width", "3.8%");
             $("#boxControl").html('<button type="button" class="btn btn-outline-dark" onclick="toggleBox(\'show\')"><i class="fa fa-arrow-down"></i></button>');
         }
     }

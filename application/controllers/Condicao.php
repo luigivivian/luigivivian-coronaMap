@@ -39,12 +39,14 @@ class Condicao extends CI_Controller{
 			$condicao = $this->m_condicao->get();
 			$dados['lista'] = true;
 			$dados['condicoes'] = $condicao;
-			$this->load->view('condicao/editar', $dados);
+
+            $this->template->load('app', 'condicao/editar', $dados);
 		}else{
 			$condicao = $this->m_condicao->get($id);
 			$dados['lista'] = false;
 			$dados['condicao'] = $condicao;
-			$this->load->view('condicao/editar', $dados);
+			//$this->load->view('condicao/editar', $dados);
+            $this->template->load('app', 'condicao/editar', $dados);
 		}
 	}
 
@@ -53,7 +55,8 @@ class Condicao extends CI_Controller{
             $condicao = $this->m_condicao->get();
             $dados['lista'] = true;
             $dados['condicoes'] = $condicao;
-            $this->load->view('condicao/editar', $dados);
+            //$this->load->view('condicao/editar', $dados);
+            $this->template->load('app', 'condicao/editar', $dados);
     }
 
 }

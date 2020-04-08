@@ -33,7 +33,7 @@ class Paciente extends REST_Controller {
 		}else{
 			$usuarios = $this->m_paciente->getByIdCondicao($id, $idCidade);
 			if(!is_null($usuarios)){
-				$this->response(array('teste' => $usuarios), 200);
+				$this->response(array('response' => $usuarios), 200);
 			}else{
 				$this->response(array('error' => 'Usuario não encontrada...'), 404);
 			}

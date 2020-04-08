@@ -1,11 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 class M_Paciente extends CI_Model
 {
 	public function __construct()
 	{
 		parent::__construct();
+
 	}
 
     public function getTotalPacientesByCondicao(){
@@ -109,8 +111,55 @@ class M_Paciente extends CI_Model
 		} else {
 			return false;
 		}
-
 	}
+
+
+	public function getDadosGrafico($idCidade, $grafico){
+
+	    if($grafico == GRAFICO_CASOS_CONFIRMADOS){
+
+	        $condicoes = array(CONDICAO_COVID_CONFIRMADO, CONDICAO_COVID_CONFIRMADO_RISCO);
+            $query = $this->db->query("select count(id) as total, DATE(created_at) AS data
+                                        from gmap_paciente gp
+                                        where (`idCondicao` = $condicoes[0] or `idCondicao` = $condicoes[1]) and `idCidade` = $idCidade
+                                        GROUP BY DATE(created_at);"
+            );
+            if($idCidade == null){
+                $query = $this->db->query("select count(id) as total, DATE(created_at) AS data
+                                        from gmap_paciente gp
+                                        where (`idCondicao` = $condicoes[0] or `idCondicao` = $condicoes[1])
+                                        GROUP BY DATE(created_at);"
+                );
+            }
+
+            if ($query->num_rows() < 5) {
+                return false;
+            }
+            return $query->result_array();
+        }
+
+        if($grafico == GRAFICO_CASOS_SUSPEITOS){
+            $idCondicao = CONDICAO_COVID_SUSPEITO;
+            $query = $this->db->query("select count(id) as total, DATE(created_at) AS data
+                                        from gmap_paciente gp
+                                        where `idCondicao` = $idCondicao and `idCidade` = $idCidade
+                                        GROUP BY DATE(created_at);"
+            );
+            if($idCidade == null){
+                $query = $this->db->query("select count(id) as total, DATE(created_at) AS data
+                                        from gmap_paciente gp
+                                        where `idCondicao` = $idCondicao
+                                        GROUP BY DATE(created_at);"
+                );
+            }
+            if ($query->num_rows() < 5) {
+                return false;
+            }
+            return $query->result_array();
+        }
+
+
+    }
 
 
 }

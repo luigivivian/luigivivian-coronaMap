@@ -33,10 +33,10 @@
 	}
 
 	.sidenav a:hover {
-		color: #088C08;
+		color: #D0D0D0;
 	}
 	.textNavbar{
-		color: #088C08 !important;
+		color: #D0D0D0 !important;
 	}
 	.sidenav .closebtn {
 		position: absolute;
@@ -68,8 +68,11 @@
 	 <a href="<?= base_url();?>"><span><i class="fa fa-home"></i>    INICIO</span></a>
 	 <a href="<?= base_url('paciente/editar');?>"><p><span><i class="fa fa-edit"></i>    EDITAR PACIENTES</span></p></a>
 	 <a href="<?= base_url('condicao/editar');?>"><p><span><span><i class="fa fa-edit"></i>    EDITAR CONDIÇÕES</span></p></a>
-	 <a href="<?= base_url('usuario/logout');?>"><p><span><span><i class="fa fa-sign-out-alt"></i>    SAIR</span></p></a>
+     <a href="<?= base_url('grafico');?>"><p><span><span><i class="fas fa-chart-bar"></i>    GRÁFICOS</span></p></a>
+     <a href="<?= base_url('usuario/logout');?>"><p><span><span><i class="fa fa-sign-out-alt"></i>    SAIR</span></p></a>
  </div>
+
+
 
  <script>
  function openNav() {
