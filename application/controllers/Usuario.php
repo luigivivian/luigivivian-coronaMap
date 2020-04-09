@@ -122,8 +122,9 @@ class Usuario extends CI_Controller{
 
 			$query = $this->m_usuario->validarDados($this->input->post('login'), md5($this->input->post('senha')));
             $idCidade = $query->row('idCidade');
-            $cidade = $this->m_cidade->getData($idCidade);
+
 			if ($query->num_rows() > 0) {//logado com sucesso
+                $cidade = $this->m_cidade->getData($idCidade);
 				$adm = $query->row('medico');
 				$data = array(
 					'nome' => $query->row('nome'),
@@ -138,7 +139,7 @@ class Usuario extends CI_Controller{
 				$this->session->set_userdata($data);
 				$dados['session'] = $data;
 				$dados['condicoes'] = $this->m_paciente->getCondicao();
-				$this->load->view('visualizar', $dados);
+				redirect('inicio');
 			} else {    //dados incorretos
 				$dados['erro'] = 1;
 				$dados['msg'] = "Usuario ou Senha incorreto !";

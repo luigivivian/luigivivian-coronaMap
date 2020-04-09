@@ -69,8 +69,12 @@
 	 <a href="<?= base_url('paciente/editar');?>"><p><span><i class="fa fa-edit"></i>    EDITAR PACIENTES</span></p></a>
 	 <a href="<?= base_url('condicao/editar');?>"><p><span><span><i class="fa fa-edit"></i>    EDITAR CONDIÇÕES</span></p></a>
      <a href="<?= base_url('grafico');?>"><p><span><span><i class="fas fa-chart-bar"></i>    GRÁFICOS</span></p></a>
+     <a href="<?= base_url('governo');?>"><p><span><span><i class="fa fa-chart-bar"></i>    DADOS DO BRASIL</span></p></a>
      <a href="<?= base_url('usuario/logout');?>"><p><span><span><i class="fa fa-sign-out-alt"></i>    SAIR</span></p></a>
+
+
  </div>
+
 
 
 

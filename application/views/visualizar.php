@@ -57,10 +57,11 @@
 
 <div class="container-fluid" id="conteudo">
 	<!--mapa-->
-	<div id="map">
-	</div>
 
+    <?php if($is_mobile == false): ?>
 
+        <div id="map">
+        </div>
 	<div id="boxMenu" class="text-center">
         <div id="boxContent">
             <h3>Selecione uma condição:</h3>
@@ -105,6 +106,7 @@
         </div>
 	</div>
 
+
 	<div class="row mt-2" id="optionsBox">
 		<div class="col"></div>
 		<div class="col-md-8" id="itensBox">
@@ -124,6 +126,18 @@
 		</div>
 		<div class="col"></div>
 	</div>
+
+    <?php else: ?>
+        <div id="map" style="width: 100%; min-height: 95vh">
+        </div>
+        <div class="row ml-5 mb-2">
+            <div class="col">
+                <select class="form-control" id="condicao">
+                    <option value="0" selected>Todas as condições</option>
+                </select>
+            </div>
+        </div>
+    <?php endif; ?>
 
 	<!--Modall-->
     <div class="modal fade" id="relatorios" tabindex="-1" role="dialog" aria-labelledby="relatorios" aria-hidden="true">
@@ -283,12 +297,17 @@
 //funcao para adicionar marker no mapa
 		function placeMarker(location, cor, dados) {
 			console.log(dados)
+            var dataFimQuarentena = new Date(dados.data_fim_quarentena).toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+
 			var contentString = '<div id="content">'+
 				'<div id="siteNotice">'+
 				'</div>'+
 				'<h3 id="firstHeading" class="firstHeading">'+dados.nome+ ' ' +dados.sobrenome+'</h3>'+
 				'<div id="bodyContent">'+
 				'<p>Condição: <b><span style="color:'+cor+'">'+ dados.doencanome +'</span></b></p>'+
+                '<p>Idade: '+ dados.idade+' </p>'+
+                '<p>Número de familiares: '+ dados.total_familiares+' </p>'+
+                '<p><b>Fim quarentena: </b>'+ dataFimQuarentena+' </p>'+
 				'<p>Descrição: '+dados.descricao +'</p>'+
 				'<p>Telefone: '+dados.telefone+'</p>'+
 				'<p>Rua: '+dados.rua+'</p>'+
@@ -298,6 +317,8 @@
 			var infowindow = new google.maps.InfoWindow({
 				content: contentString
 			});
+
+
 
 
 			var marker = new google.maps.Marker({

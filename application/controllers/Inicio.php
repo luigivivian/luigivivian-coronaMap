@@ -15,6 +15,10 @@ class Inicio extends CI_Controller{
 	public function index(){
 		$logado = $this->session->userdata('logged_in');
 		if($logado == TRUE){
+            $dados['is_mobile'] = false;
+            if($this->isMobile()){
+                $dados['is_mobile'] = true;
+            }
 			$dados['condicoes'] = $this->m_paciente->getCondicao();
 			$dados['estados'] = $this->m_estado->getAll();
 			$dados['session'] = $this->session->userdata();
@@ -32,5 +36,9 @@ class Inicio extends CI_Controller{
         $this->template->load('app', 'paciente/cadastrar', $dados);
 	}
 
+
+	public function isMobile() {
+        return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+    }
 
 }
