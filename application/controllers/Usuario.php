@@ -139,7 +139,7 @@ class Usuario extends CI_Controller{
 				$this->session->set_userdata($data);
 				$dados['session'] = $data;
 				$dados['condicoes'] = $this->m_paciente->getCondicao();
-				$this->load->view('visualizar', $dados);
+				redirect('inicio');
 			} else {    //dados incorretos
 				$dados['erro'] = 1;
 				$dados['msg'] = "Usuario ou Senha incorreto !";
