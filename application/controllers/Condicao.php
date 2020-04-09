@@ -12,6 +12,7 @@ class Condicao extends CI_Controller{
 		$this->load->model('m_condicao');
 	}
 
+
     public function testepdf(){
         $this->load->view('relatorios/totalPacientesPorCondicao');
 

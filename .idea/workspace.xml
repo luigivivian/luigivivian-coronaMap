@@ -2,96 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="528cfe2c-5f03-47c5-932e-ec33c1969297" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/controllers/Grafico.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/libraries/Template.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/app.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/app.bundle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/app.bundle.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-brands-rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-brands.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-duotone-rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-duotone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-duotone.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-light-rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-light.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-light.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-regular-rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-regular.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-solid-rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/fa-solid.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/toastr/toastr-rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/toastr/toastr.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/toastr/toastr.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/vendors.bundle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/vendors.bundle.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/app.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/moment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/statistics/c3/c3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/statistics/chartist/chartist.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/statistics/chartjs/chartjs.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/statistics/d3/d3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/statistics/demo-data/demo-c3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/statistics/demo-data/demo-data-dygraph.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/statistics/dygraph/dygraph.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/statistics/easypiechart/easypiechart.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/statistics/flot/flot.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/statistics/peity/peity.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/statistics/sparkline/sparkline.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/toastr/toastr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/vendors.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/fa-duotone-900.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/fa-duotone-900.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/fa-duotone-900.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/fa-duotone-900.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/fa-duotone-900.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/fa-light-300.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/fa-light-300.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/fa-light-300.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/fa-light-300.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/fa-light-300.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/nextgen-icons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/nextgen-icons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/nextgen-icons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/nextgen-icons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/nextgen-icons.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/summernote.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/summernote.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/summernote.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/webfonts/summernote.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/autoload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/constants.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/constants.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Condicao.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Condicao.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Inicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Inicio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Paciente.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Paciente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/api/Paciente.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/api/Paciente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/M_paciente.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/M_paciente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/condicao/editar.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/condicao/editar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/menu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/paciente/cadastrar.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/paciente/cadastrar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/paciente/editar.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/paciente/editar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/template/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/template/default.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/usuario/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/usuario/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Usuario.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/visualizar.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/visualizar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/fa-brands.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/fa-brands.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/fa-regular.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/fa-regular.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/fa-solid.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/fa-solid.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-brands-400.eot" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-brands-400.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-brands-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-brands-400.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-brands-400.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-brands-400.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-brands-400.woff" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-brands-400.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-brands-400.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-brands-400.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-regular-400.eot" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-regular-400.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-regular-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-regular-400.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-regular-400.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-regular-400.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-regular-400.woff" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-regular-400.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-regular-400.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-regular-400.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-solid-900.eot" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-solid-900.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-solid-900.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-solid-900.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-solid-900.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-solid-900.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-solid-900.woff" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-solid-900.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/webfonts/fa-solid-900.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webfonts/fa-solid-900.woff2" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,6 +19,20 @@
       <executable />
     </execution>
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -117,18 +45,18 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\coronamap\application\helpers" />
-      <recent name="C:\wamp64\www\coronamap\application\enums_helper.php" />
-      <recent name="C:\wamp64\www\coronamap\application\enums_helper" />
-      <recent name="C:\wamp64\www\coronamap\assets\webfonts" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\coronamap\assets\css" />
       <recent name="C:\wamp64\www\coronamap\assets\js" />
       <recent name="C:\wamp64\www\coronamap\application\views\graficos" />
       <recent name="C:\wamp64\www\coronamap\application\controllers" />
       <recent name="C:\wamp64\www\coronamap\application\libraries" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\coronamap\application\helpers" />
+      <recent name="C:\wamp64\www\coronamap\application\enums_helper.php" />
+      <recent name="C:\wamp64\www\coronamap\application\enums_helper" />
+      <recent name="C:\wamp64\www\coronamap\assets\webfonts" />
     </key>
   </component>
   <component name="RunDashboard">

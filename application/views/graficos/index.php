@@ -35,7 +35,6 @@
 <!-- DOC: script to save and load page settings -->
 
 
-<?php var_dump($casosConfirmados);?>
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
     <div class="page-inner">
@@ -70,7 +69,7 @@
                                     <div class="panel-content">
                                         <div class="panel-tag" id="barChartSuspeitosInfo">
                                             Esse gráfico representa o crescimento do número de casos suspeitos de covid-19                                        </div>
-                                        <div id="barChartSuspeitos">
+                                        <div id="lineChart">
                                             <canvas style="width:100%; height:300px;"></canvas>
                                         </div>
                                     </div>
@@ -320,35 +319,125 @@
 
     var cidade = "<?= $session['cidade']; ?>";
 
+    //
+    // var barChartSuspeitos = function()
+    // {
+    //     var barChartData = {
+    //         labels: casosSuspeitosLabels,
+    //         datasets: [
+    //             {
+    //                 label: "Casos suspeitos",
+    //                 backgroundColor: color.warning._300,
+    //                 borderColor: color.warning._500,
+    //                 borderWidth: 1,
+    //                 data: casosSuspeitos,
+    //             }]
+    //
+    //     };
+    //     var config = {
+    //         type: 'bar',
+    //         data: barChartData,
+    //         options:
+    //             {
+    //                 responsive: true,
+    //                 legend:
+    //                     {
+    //                         position: 'top',
+    //                     },
+    //                 title:
+    //                     {
+    //                         display: false,
+    //                         text: 'Bar Chart'
+    //                     },
+    //                 scales:
+    //                     {
+    //                         xAxes: [
+    //                             {
+    //                                 display: true,
+    //                                 scaleLabel:
+    //                                     {
+    //                                         display: false,
+    //                                         labelString: '6 months forecast'
+    //                                     },
+    //                                 gridLines:
+    //                                     {
+    //                                         display: true,
+    //                                         color: "#f2f2f2"
+    //                                     },
+    //                                 ticks:
+    //                                     {
+    //                                         beginAtZero: true,
+    //                                         fontSize: 11
+    //                                     }
+    //                             }],
+    //                         yAxes: [
+    //                             {
+    //                                 display: true,
+    //                                 scaleLabel:
+    //                                     {
+    //                                         display: false,
+    //                                         labelString: 'Profit margin (approx)'
+    //                                     },
+    //                                 gridLines:
+    //                                     {
+    //                                         display: true,
+    //                                         color: "#f2f2f2"
+    //                                     },
+    //                                 ticks:
+    //                                     {
+    //                                         beginAtZero: true,
+    //                                         fontSize: 11,
+    //                                         stepSize: 1,
+    //                                         precision: 1,
+    //                                     }
+    //                             }]
+    //                     }
+    //             }
+    //     }
+    //     new Chart($("#barChartSuspeitos > canvas").get(0).getContext("2d"), config);
+    // }
+    //
 
-    var barChartSuspeitos = function()
+
+    /* line chart */
+    var lineChart = function()
     {
-        var barChartData = {
-            labels: casosSuspeitosLabels,
-            datasets: [
-                {
-                    label: "Casos suspeitos",
-                    backgroundColor: color.warning._300,
-                    borderColor: color.warning._500,
-                    borderWidth: 1,
-                    data: casosSuspeitos,
-                }]
-
-        };
         var config = {
-            type: 'bar',
-            data: barChartData,
+            type: 'line',
+            data:
+                {
+                    labels: casosSuspeitosLabels,
+                    datasets: [
+                        {
+                            label: "Casos suspeitos",
+                            borderColor: color.warning._500,
+                            pointBackgroundColor: color.warning._700,
+                            pointBorderColor: 'rgba(0, 0, 0, 0)',
+                            pointBorderWidth: 1,
+                            borderWidth: 1,
+                            pointRadius: 3,
+                            pointHoverRadius: 4,
+                            data: casosSuspeitos,
+                            fill: false
+                        }]
+                },
             options:
                 {
                     responsive: true,
-                    legend:
-                        {
-                            position: 'top',
-                        },
                     title:
                         {
                             display: false,
-                            text: 'Bar Chart'
+                            text: 'Line Chart'
+                        },
+                    tooltips:
+                        {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                    hover:
+                        {
+                            mode: 'nearest',
+                            intersect: true
                         },
                     scales:
                         {
@@ -394,11 +483,9 @@
                                 }]
                         }
                 }
-        }
-        new Chart($("#barChartSuspeitos > canvas").get(0).getContext("2d"), config);
+        };
+        new Chart($("#lineChart > canvas").get(0).getContext("2d"), config);
     }
-
-
 
 
 
@@ -535,7 +622,7 @@
         ];
         var labels = ["1 até 10 anos", "10 até 20 anos", "20 até 40 anos", "40 até 70", "> 70"];
         barChartConfirmados();
-        barChartSuspeitos()
+        lineChart();
         pieChart(data, labels);
 
     });

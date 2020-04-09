@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <style>
     #map {
         height: 90vmin;
@@ -89,11 +91,23 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="data_fim_quarenta">Data término quarentena</label>
-                                    <input type="date" name="data_fim_quarenta" class="form-control" id="data_fim_quarenta" aria-describedby="data_fim_quarentaHELP">
-                                    <small id="data_fim_quarentaHELP" class="form-text text-muted">campo obrigatório</small>
+                                    <label for="created_at">Data de inicio quarentena</label>
+                                    <input type="date" name="data_inicio_quarentena" class="form-control" id="data_inicio_quarentena" aria-describedby="data_inicio_quarentenaHELP">
+                                    <small id="data_inicio_quarentenaHELP" class="form-text text-muted">campo obrigatório</small>
                                 </div>
                             </div>
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="data_fim_quarentena">Data término quarentena</label>
+                                    <input type="date" name="data_fim_quarentena" class="form-control" id="data_fim_quarentena" aria-describedby="data_fim_quarentenaHELP">
+                                    <small id="data_fim_quarentenaHELP" class="form-text text-muted">campo obrigatório</small>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label for="numero_familiares">Número de familiares</label>
@@ -153,17 +167,16 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
                         <!--						endereço modal-->
                         <div class="form-group">
                             <label for="opcoes">Selecione uma doença</label>
                             <select class="custom-select" name="idCondicao" id="opcoes">
                                 <option value="null" disabled selected>Selecione uma opcao !</option>
                             </select>
-                            <small onclick="novaDoenca();">Cadastrar nova doença?</small>
+                        </div>
+
+                        <div>
+                            <small class="mt-lg-2" onclick="novaDoenca();">Cadastrar nova condição?</small>
                         </div>
                         <!--						Area cadastro nova doença-->
                         <input type="hidden" id="lat" name="lat" required>
@@ -309,7 +322,7 @@
         //Botao modal dados paciente
         $("#btnModalDados").click(function() {
             if($('#endereco').val() == '' || $('#nome').val() == '' || $('#sobrenome').val() == '' || $('#datanascimento').val() == ''
-                || $('#telefone').val() == '' || $('#rua').val() == '' || $('#numero').val() == '' || $('#idCondicao').val() == ''){
+                || $('#telefone').val() == '' || $('#rua').val() == '' || $('#numero').val() == '' || $('#idCondicao').val() === ''|| $('#idCondicao').val() === null){
                 alert("Preencha todos os campos !");
                 return;
             }
@@ -363,7 +376,7 @@
         $("#cadastro").submit(function(event) {
             console.log('aaaaaaa');
             console.log($('#endereco').val());
-            if($('#endereco').val() == '' || $('#nome').val() == '' || $('#sobrenome').val() == '' || $('#datanascimento').val() == ''
+            if($('#endereco').val() == '' || $('#nome').val() == '' || $('#sobrenome').val() == '' || $('#datanascimento').val() == null
                 || $('#telefone').val() == '' || $('#rua').val() == '' || $('#numero').val() == '' || $('#datanascimento').val() == '' ){
                 alert("Preencha todos os campos !");
                 return

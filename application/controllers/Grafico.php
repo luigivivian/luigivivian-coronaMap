@@ -28,7 +28,7 @@ class Grafico extends CI_Controller{
         if($dados['casosSuspeitos'] != false){
             $dados['casosSuspeitosLabels'] = array();
             foreach ($dados['casosSuspeitos'] as $d){
-                array_push($dados['casosSuspeitosLabels'], date('d-m-Y', strtotime($d['data'])));
+                array_push($dados['casosSuspeitosLabels'], date('d/m', strtotime($d['data'])));
             }
         }
 
