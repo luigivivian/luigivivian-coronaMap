@@ -1,12 +1,5 @@
-<style>
-    #map {
-        height: 90vmin;
-
-    }
-</style>
-<body>
 <?php $this->load->view('menu');?>
-<div class="container mt-xl-4">
+<div class="container mt-5">
     <div>
         <a href="<?= base_url('inicio/cadastrar'); ?>" class="btn mb-3 btn-block btn-success">
             Cadastrar Paciente
@@ -44,16 +37,3 @@
     <?php }?>
 
 </div>
-
-<script
-        src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
-<script
-        src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-        crossorigin="anonymous"></script>
-<script >
-</script>
-
-</body>

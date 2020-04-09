@@ -283,12 +283,17 @@
 //funcao para adicionar marker no mapa
 		function placeMarker(location, cor, dados) {
 			console.log(dados)
+            var dataFimQuarentena = new Date(dados.data_fim_quarentena).toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+
 			var contentString = '<div id="content">'+
 				'<div id="siteNotice">'+
 				'</div>'+
 				'<h3 id="firstHeading" class="firstHeading">'+dados.nome+ ' ' +dados.sobrenome+'</h3>'+
 				'<div id="bodyContent">'+
 				'<p>Condição: <b><span style="color:'+cor+'">'+ dados.doencanome +'</span></b></p>'+
+                '<p>Idade: '+ dados.idade+' </p>'+
+                '<p>Número de familiares: '+ dados.total_familiares+' </p>'+
+                '<p><b>Fim quarentena: </b>'+ dataFimQuarentena+' </p>'+
 				'<p>Descrição: '+dados.descricao +'</p>'+
 				'<p>Telefone: '+dados.telefone+'</p>'+
 				'<p>Rua: '+dados.rua+'</p>'+
@@ -298,6 +303,8 @@
 			var infowindow = new google.maps.InfoWindow({
 				content: contentString
 			});
+
+
 
 
 			var marker = new google.maps.Marker({

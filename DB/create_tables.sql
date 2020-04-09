@@ -58,7 +58,7 @@ create table gmap_paciente(
   	idCidade INT UNSIGNED not null,
   	created_at TIMESTAMP not null default CURRENT_TIMESTAMP,
   	total_familiares INT not null,
-  	data_fim_quarenta DATE not null,
+  	data_fim_quarentena DATE not null,
   	CONSTRAINT `fk_gmap_paciente_idCidade_cidade` FOREIGN KEY (idCidade) REFERENCES gmap_cidade (id),
   	CONSTRAINT `fk_gmap_paciente_idCondicao_tipoCondicao` FOREIGN KEY (idCondicao) REFERENCES gmap_tipoCondicao (id)
 );
