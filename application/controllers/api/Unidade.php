@@ -4,40 +4,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require APPPATH . 'libraries/REST_Controller.php';
 
-class Paciente extends REST_Controller {
+class Unidade extends REST_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('m_paciente');
+		$this->load->model('m_unidade');
 	}
 
-	public function index_get(){ //index
-		$usuarios = $this->m_paciente->get();
-		if(!is_null($usuarios)){
-			$this->response(array('response' => $usuarios), 200);
-		}else{
-			$this->response(array('error' => 'Usuario não encontrada...'), 404);
-		}
-	}
 
-	public function pinos_get($id, $idCidade){ //index
-		if(!$id){
-			if($id == 0){
-				$usuarios = $this->m_paciente->get(null, $idCidade);
-				$this->response(array('response' => $usuarios), 200);
-			}else{
-				$usuarios = $this->m_paciente->get($id, $idCidade);
-				$this->response(array('response' => $usuarios), 200);
-			}
-
-		}else{
-			$usuarios = $this->m_paciente->getByIdCondicao($id, $idCidade);
-			if(!is_null($usuarios)){
-				$this->response(array('response' => $usuarios), 200);
-			}else{
-				$this->response(array('error' => 'Usuario não encontrada...'), 404);
-			}
-		}
+	public function unidades_get(){ //index
+        if(empty($idCidade)){
+            $usuarios = $this->m_unidade->get();
+            $this->response(array('response' => $usuarios), 200);
+        }else{
+            $usuarios = $this->m_unidade->get();
+            $this->response(array('response' => $usuarios), 200);
+        }
 	}
 
 

@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="528cfe2c-5f03-47c5-932e-ec33c1969297" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/consultas.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DB/consultas.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Inicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Inicio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Usuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/api/Paciente.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/api/Paciente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/models/M_paciente.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/M_paciente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/paciente/cadastrar.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/paciente/cadastrar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/visualizar.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/visualizar.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,16 +44,16 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/application/controllers/api" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\coronamap\application\controllers\api" />
+      <recent name="C:\wamp64\www\coronamap\application\models" />
       <recent name="C:\wamp64\www\coronamap\assets\css" />
       <recent name="C:\wamp64\www\coronamap\assets\js" />
       <recent name="C:\wamp64\www\coronamap\application\views\graficos" />
-      <recent name="C:\wamp64\www\coronamap\application\controllers" />
-      <recent name="C:\wamp64\www\coronamap\application\libraries" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\coronamap\application\helpers" />
@@ -83,6 +86,10 @@
       <updated>1585780272171</updated>
       <workItem from="1585780273513" duration="53332000" />
       <workItem from="1586277426590" duration="681000" />
+      <workItem from="1586799276220" duration="1350000" />
+      <workItem from="1586845985293" duration="6938000" />
+      <workItem from="1586859019740" duration="5646000" />
+      <workItem from="1586971062851" duration="233000" />
     </task>
     <servers />
   </component>
@@ -101,5 +108,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/application/models/M_unidade.php</url>
+          <line>37</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

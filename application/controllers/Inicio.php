@@ -10,6 +10,7 @@ class Inicio extends CI_Controller{
 		parent::__construct();
 		$this->load->model('m_paciente');
         $this->load->model('m_estado');
+        $this->load->model('m_unidade');
 	}
 
 	public function index(){
@@ -29,9 +30,22 @@ class Inicio extends CI_Controller{
         }
 	}
 
+    public function publico(){
+        $logado = $this->session->userdata('logged_in');
+        $dados['is_mobile'] = false;
+        if($this->isMobile()){
+            $dados['is_mobile'] = true;
+        }
+        $dados['unidades'] = $this->m_unidade->get();
+        $dados['estados'] = $this->m_estado->getAll();
+        $dados['session'] = $this->session->userdata();
+        $this->template->load('app', 'mapa_publico/visualizar', $dados);
+    }
+
 	public function cadastrar(){
         $dados['condicoes'] = $this->m_paciente->getCondicao();
         $dados['estados'] = $this->m_estado->getAll();
+        $dados['unidades'] = $this->m_unidade->getAll();
         $dados['session'] = $this->session->userdata();
         $this->template->load('app', 'paciente/cadastrar', $dados);
 	}

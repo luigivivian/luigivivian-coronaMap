@@ -294,15 +294,15 @@
 			};
 		}
 
+
 //funcao para adicionar marker no mapa
 		function placeMarker(location, cor, dados) {
 			console.log(dados)
             var dataFimQuarentena = new Date(dados.data_fim_quarentena).toLocaleDateString('pt-BR', {timeZone: 'UTC'});
-
 			var contentString = '<div id="content">'+
 				'<div id="siteNotice">'+
 				'</div>'+
-				'<h3 id="firstHeading" class="firstHeading">'+dados.nome+ ' ' +dados.sobrenome+'</h3>'+
+				'<h3 id="firstHeading" class="firstHeading">'+dados.iniciais_nome+'</h3>'+
 				'<div id="bodyContent">'+
 				'<p>Condição: <b><span style="color:'+cor+'">'+ dados.doencanome +'</span></b></p>'+
                 '<p>Idade: '+ dados.idade+' </p>'+
@@ -318,7 +318,10 @@
 				content: contentString
 			});
 
-
+            function calcAge(dateString) {
+                var birthday = +new Date(dateString);
+                return ~~((Date.now() - birthday) / (31557600000));
+            }
 
 
 			var marker = new google.maps.Marker({
@@ -327,6 +330,28 @@
 				icon: pinSymbol(cor),
 				draggable: false
 			});
+            // adicionando circulo no mapa
+            // var oMarker = new google.maps.Marker({
+            //     position: location,
+            //     sName: "Marker Name",
+            //     map: map,
+            //     icon: {
+            //         path: google.maps.SymbolPath.CIRCLE,
+            //         scale: 8.5,
+            //         fillColor: "#F00",
+            //         fillOpacity: 0.4,
+            //         strokeWeight: 0.4
+            //     },
+            // });
+            //
+            // oMarker.setIcon({
+            //     path: google.maps.SymbolPath.CIRCLE,
+            //     scale: 20,
+            //     fillColor: "#F00",
+            //     fillOpacity: 0.8,
+            //     strokeWeight: 1
+            // })
+
 			pinos.push(marker);
 			marker.addListener('click', function() {
 				infowindow.open(map, marker);
@@ -363,6 +388,7 @@
 				strokeColor: '#000',
 				strokeWeight: 2,
 				scale: 1
+
 			};
 		}
 

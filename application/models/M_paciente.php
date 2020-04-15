@@ -23,7 +23,7 @@ class M_Paciente extends CI_Model
         }
     }
     public function getPacientesECondicoes(){
-        $query = $this->db->query("SELECT p.id, c.nome as cnome, c.cor, p.nome as pnome, p.sobrenome, p.telefone, p.datanascimento, current_date as dataAtual
+        $query = $this->db->query("SELECT p.id, c.nome as cnome, c.cor, p.iniciais_nome as pnome, p.telefone, p.datanascimento, current_date as dataAtual
                                 from gmap_paciente p
                                 INNER JOIN gmap_tipoCondicao c
                                 ON p.idCondicao = c.id
@@ -38,7 +38,7 @@ class M_Paciente extends CI_Model
 	public function get($id = null, $idCidade= null)
 	{
 		if (!empty($id) && !empty($idCidade)) {
-			$query = $this->db->query("SELECT YEAR(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(u.datanascimento))) AS idade, u.total_familiares, u.data_fim_quarentena, td.cor,td.nome as doencanome, u.endereco, u.datanascimento, td.descricao, u.id, u.idCondicao, u.lat, u.lng, u.nome, u.numero, u.sobrenome, u.rua, u.telefone, u.idCidade
+			$query = $this->db->query("SELECT YEAR(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(u.datanascimento))) AS idade, u.total_familiares, u.data_fim_quarentena, td.cor,td.nome as doencanome, u.endereco, u.datanascimento, td.descricao, u.id, u.idCondicao, u.lat, u.lng, u.iniciais_nome, u.numero, u.rua, u.telefone, u.idCidade
                                 from gmap_paciente u
                                 INNER JOIN gmap_tipoCondicao td
                                 ON u.idCondicao = td.id
@@ -49,7 +49,7 @@ class M_Paciente extends CI_Model
 				return false;
 			}
 		} else {
-			$query = $this->db->query("SELECT YEAR(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(u.datanascimento))) AS idade, u.total_familiares, u.data_fim_quarentena, td.cor, td.nome as doencanome, u.datanascimento, td.descricao, u.id, u.idCondicao, u.lat, u.lng, u.nome, u.numero, u.sobrenome, u.rua, u.telefone
+			$query = $this->db->query("SELECT YEAR(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(u.datanascimento))) AS idade, u.total_familiares, u.data_fim_quarentena, td.cor, td.nome as doencanome, u.datanascimento, td.descricao, u.id, u.idCondicao, u.lat, u.lng, u.iniciais_nome, u.numero, u.rua, u.telefone
                                 from gmap_paciente u
                                 INNER JOIN gmap_tipoCondicao td
                                 ON u.idCondicao = td.id where u.idCidade = $idCidade");
@@ -63,7 +63,7 @@ class M_Paciente extends CI_Model
 
 	public function getByIdCondicao($id)
 	{
-		$query = $this->db->query("SELECT YEAR(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(u.datanascimento))) AS idade,u.total_familiares, u.data_fim_quarentena, td.cor,td.nome as doencanome, u.datanascimento, td.descricao, u.id, u.idCondicao, u.lat, u.lng, u.nome, u.numero, u.sobrenome, u.rua, u.telefone
+		$query = $this->db->query("SELECT YEAR(FROM_DAYS(TO_DAYS(NOW())-TO_DAYS(u.datanascimento))) AS idade,u.total_familiares, u.data_fim_quarentena, td.cor,td.nome as doencanome, u.datanascimento, td.descricao, u.id, u.idCondicao, u.lat, u.lng, u.numero, u.iniciais_nome, u.rua, u.telefone
                                 from gmap_paciente u
                                 INNER JOIN gmap_tipoCondicao td
                                 ON u.idCondicao = td.id
