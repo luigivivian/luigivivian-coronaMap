@@ -166,7 +166,6 @@
 
 
 
-
 <script
 	src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -201,7 +200,7 @@
 
 		//criando mapa
 		map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 15,
+			zoom: 30,
 			center: inicial,
 			clickableIcons: false
 		});
@@ -221,7 +220,7 @@
 
 		function getByCondicao(){
 			var idCondicao = $('#condicao').val();
-			var idCidade = 1;
+            var idCidade = "<?= $session['id_cidade']; ?>";
 			$.ajax({
 				url:"<?= base_url();?>api/paciente/pinos/"+idCondicao+"/"+idCidade,
 				dataType:'json',

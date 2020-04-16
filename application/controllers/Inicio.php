@@ -43,10 +43,13 @@ class Inicio extends CI_Controller{
     }
 
 	public function cadastrar(){
+	    $session = $this->session->userdata();
+	    if(empty($session))
+	        redirect('usuario');
         $dados['condicoes'] = $this->m_paciente->getCondicao();
         $dados['estados'] = $this->m_estado->getAll();
-        $dados['unidades'] = $this->m_unidade->getAll();
-        $dados['session'] = $this->session->userdata();
+        $dados['unidades'] = $this->m_unidade->getAll($session['id_cidade']);
+        $dados['session'] = $session;
         $this->template->load('app', 'paciente/cadastrar', $dados);
 	}
 

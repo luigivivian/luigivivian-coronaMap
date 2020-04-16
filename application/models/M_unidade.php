@@ -28,8 +28,11 @@ class M_unidade extends CI_Model
     }
 
 
-    public function getAll(){
-        $query = $this->db->select('*')->from('gmap_unidade')->get();
+    public function getAll($idCidade){
+	    if(empty($idCidade)){
+	        return false;
+        }
+        $query = $this->db->select('*')->where('idCidade', $idCidade)->from('gmap_unidade')->get();
         if($query->num_rows() > 0){
             return $query->result_array();
         }else{

@@ -143,7 +143,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="senha">Número</label>
-                                    <input type="number"  name="numero" required class="form-control" id="numeroCasa" aria-describedby="telefoneHelp" placeholder="Digite o número da casa">
+                                    <input type="number" name="numero" required class="form-control" id="numero" aria-describedby="telefoneHelp" placeholder="Digite o número da casa">
                                     <small id="telHELP" class="form-text text-muted">campo obrigatório</small>
                                 </div>
                             </div>
@@ -254,6 +254,12 @@
     function initMap() {
         //local inicial do mapa
         var inicial = {lat: -28.715051, lng: -51.931089};
+
+        var cidade = "<?= $session['cidade']; ?>";
+        var estado = "<?= $session['estado']; ?>";
+        geocoder = new google.maps.Geocoder();
+        address = cidade + ", " + estado;
+
         //criando mapa
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15,
@@ -290,6 +296,9 @@
                 }
             }
         });
+
+
+
 //funcao para adicionar marker no mapa
         function placeMarker(location, cor) {
             marker = new google.maps.Marker({
@@ -327,9 +336,20 @@
             };
         }
     }
+
+    function SetMapAddress(address) {  // "London, UK" for example
+        var geocoder = new google.maps.Geocoder();
+        if (geocoder) {
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.fitBounds(results[0].geometry.viewport);
+                }
+            });
+        }
+    }
     $(document).ready(function() {
         $( "#cadDoenca" ).hide();
-
+        SetMapAddress(address);
         $('#cadastroModal').modal({backdrop: 'static', keyboard: false})
         $('#cadastroModal').modal('show');
 
