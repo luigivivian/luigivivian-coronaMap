@@ -24,25 +24,30 @@
         <h3>Condições e total de pacientes</h3>
     </div>
     <div class="tabela mt-xl-5">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Condição</th>
-                <th class="text-center" scope="col">Número total de pacientes</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($lista as $v){ ?>
+        <?php if(!empty($lista)):?>
+            <table class="table table-bordered">
+                <thead>
                 <tr>
-                    <th scope="row"><?= $v['id']; ?></th>
-                    <td style="color: <?= $v['cor']?>"><?= $v['nome']; ?></td>
-                    <td class="text-center"><?= $v['total']; ?></td>
+                    <th scope="col">ID</th>
+                    <th scope="col">Condição</th>
+                    <th class="text-center" scope="col">Número total de pacientes</th>
                 </tr>
-            <?php }?>
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                <?php foreach ($lista as $v){ ?>
+                    <tr>
+                        <th scope="row"><?= $v['id']; ?></th>
+                        <td style="color: <?= $v['cor']?>"><?= $v['cnome']; ?></td>
+                        <td class="text-center"><?= $v['total']; ?></td>
+                    </tr>
+                <?php }?>
+                </tbody>
+            </table>
+        <?php else:?>
+            <div>
+                Dados insuficientes para gerar o relatorio.
+            </div>
+        <?php endif;?>
     </div>
 
 

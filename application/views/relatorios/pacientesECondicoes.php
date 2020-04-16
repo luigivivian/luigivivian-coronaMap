@@ -23,35 +23,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="mt-xl-5 text-center">
         <h3>Pacientes e condições</h3>
     </div>
-    <div class="tabela mt-xl-5">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>ID Paciente</th>
-                <th>Condição</th>
-                <th>Nome Completo</th>
-                <th>Telefone</th>
-                <th>Data de Nascimento</th>
-                <th>Idade</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($lista as $v){ ?>
+    <?php if(!empty($lista)):?>
+        <div class="tabela mt-xl-5">
+            <table class="table table-bordered">
+                <thead>
                 <tr>
-                    <th scope="row"><?= $v['id']; ?></th>
-                    <td style="color: <?= $v['cor']?>"><?= $v['cnome']; ?></td>
-                    <td><?= $v['pnome']; ?> <?= $v['sobrenome']; ?></td>
-                    <td><?= $v['telefone']; ?></td>
-                    <td><?= date('d/m/Y', strtotime($v['datanascimento'])); ?></td>
-                    <td><?= $v['dataAtual'] - $v['datanascimento']; ?></td>
+                    <th>ID Paciente</th>
+                    <th>Condição</th>
+                    <th>Nome Completo</th>
+                    <th>Telefone</th>
+                    <th>Data de Nascimento</th>
+                    <th>Idade</th>
                 </tr>
-            <?php }?>
-            </tbody>
-        </table>
-
-    </div>
-
-
+                </thead>
+                <tbody>
+                <?php foreach ($lista as $v){ ?>
+                    <tr>
+                        <th scope="row"><?= $v['id']; ?></th>
+                        <td style="color: <?= $v['cor']?>"><?= $v['cnome']; ?></td>
+                        <td><?= $v['iniciais_nome']; ?> </td>
+                        <td><?= $v['telefone']; ?></td>
+                        <td><?= date('d/m/Y', strtotime($v['datanascimento'])); ?></td>
+                        <td><?= $v['dataAtual'] - $v['datanascimento']; ?></td>
+                    </tr>
+                <?php }?>
+                </tbody>
+            </table>
+        </div>
+    <?php else: ?>
+        <div>
+            Dados insuficientes para gerar o relatorio.
+        </div>
+    <?php endif;?>
 </div>
 <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"

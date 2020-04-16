@@ -11,7 +11,8 @@ class M_Paciente extends CI_Model
 	}
 
     public function getTotalPacientesByCondicao(){
-        $query = $this->db->query("SELECT c.id, c.nome, c.cor,  count(c.id) as total from gmap_paciente p
+        $query = $this->db->query("SELECT c.id, c.nome as cnome, c.cor, count(c.id) as total, p.*
+                                    from gmap_paciente p
                                     INNER JOIN gmap_tipoCondicao c
                                     ON p.idCondicao = c.id
                                     group by c.id
@@ -23,7 +24,7 @@ class M_Paciente extends CI_Model
         }
     }
     public function getPacientesECondicoes(){
-        $query = $this->db->query("SELECT p.id, c.nome as cnome, c.cor, p.iniciais_nome as pnome, p.telefone, p.datanascimento, current_date as dataAtual
+        $query = $this->db->query("SELECT p.id, c.nome as cnome, c.cor, p.iniciais_nome as iniciais_nome, p.telefone, p.datanascimento, current_date as dataAtual
                                 from gmap_paciente p
                                 INNER JOIN gmap_tipoCondicao c
                                 ON p.idCondicao = c.id

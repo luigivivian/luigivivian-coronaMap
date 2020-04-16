@@ -32,14 +32,8 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="exampleInputPassword1">NOME</label>
-                        <input type="text" required class="form-control" id="nome" name="nome" value="<?= $paciente['nome']?>" placeholder="Nome">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">SOBRENOME</label>
-                        <input type="text" required class="form-control" id="sobrenome" name="sobrenome" value="<?= $paciente['sobrenome']?>" placeholder="Nome">
+                        <label for="exampleInputPassword1">INICIAIS</label>
+                        <input type="text" required class="form-control" id="iniciais_nome" name="iniciais_nome" value="<?= $paciente['iniciais_nome']?>" placeholder="Nome">
                     </div>
                 </div>
             </div>
