@@ -18,7 +18,11 @@
     <link rel="stylesheet" href="<?= base_url('/assets/css/toastr/toastr.css.map');?>">
 </head>
 <style>
-
+#boxLogin{
+    -webkit-box-shadow: 10px 0px 132px 0px rgba(0,0,0,0.39);
+    -moz-box-shadow: 10px 0px 132px 0px rgba(0,0,0,0.39);
+    box-shadow: 10px 0px 132px 0px rgba(0,0,0,0.39);
+}
 </style>
 <body>
 
@@ -30,7 +34,7 @@
 		<div class="mt-xl-5">
 			<div class="row">
 				<div class="col"></div>
-				<div class="col-md-6 mb-xl-5	" id="boxLogin">
+				<div class="col-md-6 mb-xl-5" id="boxLogin">
 					<?php if(isset($msg)){ ?>
 					<?php if(isset($erro)){?>
 					<div class="alert mt-xl-4 text-center alert-danger" role="alert">
@@ -54,7 +58,6 @@
 							</div>
 							<div class="mb-xl-4">
 								<button type="submit" class="btn btn-primary">Entrar</button>
-								<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Cadastrar-se</button>
 							</div>
 						</div>
 						<?= form_close();?>

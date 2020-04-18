@@ -28,11 +28,11 @@ class Unidade extends REST_Controller {
 		if(!$id){
 			$this->response(null, 400);
 		}else{
-			$usuarios = $this->m_paciente->get($id);
+			$usuarios = $this->m_unidade->get($id);
 			if(!is_null($usuarios)){
 				$this->response(array('response' => $usuarios), 200);
 			}else{
-				$this->response(array('error' => 'Usuario não encontrada...'), 404);
+				$this->response(array('error' => 'Unidade não encontrada...'), 404);
 			}
 		}
 	}
@@ -40,22 +40,29 @@ class Unidade extends REST_Controller {
 		if(!$this->post()){ //se formulario for nulo dispara erro.
 			$this->response(null, 400); //erro 400
 		}
+        $data = $this->post();
+        unset($data['endereco']);
 
         $this->load->library('form_validation');
         $rules = array(
             array(
-                'field' => 'idCondicao',
-                'label' => 'idCondicao',
+                'field' => 'lat',
+                'label' => 'lat',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'lng',
+                'label' => 'lng',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'nome',
+                'label' => 'nome',
                 'rules' => 'required|max_length[200]'
             ),
             array(
-                'field' => 'idUnidade',
-                'label' => 'idUnidade',
-                'rules' => 'required|max_length[200]'
-            ),
-            array(
-                'field' => 'datanascimento',
-                'label' => 'datanascimento',
+                'field' => 'bairro',
+                'label' => 'bairro',
                 'rules' => 'required|max_length[200]'
             ),
         );
@@ -65,9 +72,8 @@ class Unidade extends REST_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->response(array('error', 'Preencha todos os dados'), 400);
         }
-        $data = $this->post();
-        $data['datanascimento'] = date('Y-m-d H:i:s', strtotime($data['datanascimento']));
-        $query = $this->m_paciente->store('gmap_paciente',$data); //armazena dados no database
+
+        $query = $this->m_unidade->store('gmap_unidade',$data); //armazena dados no database
 
         if(is_null($query)){ //caso os dados forem armazenados com sucesso
             $this->response(array('error', 'Erro no servidor'), 400);

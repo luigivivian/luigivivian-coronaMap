@@ -63,27 +63,32 @@
         <div id="map">
         </div>
 
-        <div class="row mt-2" id="optionsBox">
-            <div class="col" id="itensBox">
-                <div>
-                    <div class="input-group-prepend">
-                        <div class="col">
-                            <input class="form-control tags" style="width: 40vmax;" id="endereco" name="endereco" type="text" placeholder="Ex: Av. Arthur Oscar - Centro, Serafina Corrêa" required>
-                            <input class="form-control" id="end" name="end" type="text" hidden>
-                        </div>
-                        <div class="col">
-                            <button type="button" id="btnEndereco" class="btn btn-success ml-xl-2"/>Mostrar no mapa</button>
+        <div class="col col-md-8 offset-md-2">
+            <div class="row mt-2" id="optionsBox">
+                <div class="col col-md-8" id="itensBox">
+                    <div>
+                        <div class="input-group-prepend">
+                            <div class="col">
+                                <input class="form-control tags" style="width: 40vmax;" id="endereco" name="endereco" type="text" placeholder="Ex: Av. Arthur Oscar - Centro, Serafina Corrêa" required>
+                                <input class="form-control" id="end" name="end" type="text" hidden>
+                            </div>
+                            <div class="col">
+                                <button type="button" id="btnEndereco" class="btn btn-success"/>Mostrar no mapa</button>
+                            </div>
+                            <div class="col">
+                                <a href="<?= base_url('/usuario/index');?>" class="btn btn-primary">Logar</a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
         </div>
 
     <?php else: ?>
         <div id="map" style="width: 100%; min-height: 95vh">
         </div>
-
-
     <?php endif; ?>
 
 
@@ -115,8 +120,9 @@
         var vm = this;
         var lat;
         var lng;
-        var cidade = "<?= $session['cidade']; ?>";
-        var estado = "<?= $session['estado']; ?>";
+        var cidade = "<?= $cidade; ?>";
+        var estado = "<?= $estado; ?>";
+        console.log(cidade);
         //local do mapa
         var inicial = {lat: -28.715051, lng: -51.931089};
         var loc;

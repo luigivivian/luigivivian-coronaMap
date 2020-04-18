@@ -22,6 +22,7 @@
 </style>
 <body>
 <?php $this->load->view('menu');?>
+<?php var_dump($paciente);?>
 <div class="container mt-xl-4">
         <h5>Dados paciente Form</h5>
         <form id="update" method="POST" action="<?= base_url('api/paciente')?>">
@@ -51,6 +52,36 @@
                     </div>
                 </div>
 
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="data_inicio_quarentena">DATA INICIO QUARENTENA</label>
+                        <input type="date" required class="form-control" id="data_inicio_quarentena" name="data_inicio_quarentena" value="<?= date('Y-m-d', strtotime($paciente['data_inicio_quarentena']))?>">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="data_fim_quarentena">DATA FIM QUARENTENA</label>
+                        <input type="date" required class="form-control" id="data_fim_quarentena" name="data_fim_quarentena" value="<?= date('Y-m-d', strtotime($paciente['data_fim_quarentena']))?>">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="total_familiares">NÚMERO DE FAMILIARES</label>
+                        <input type="number" required class="form-control" id="total_familiares" name="total_familiares" value="<?= $paciente['total_familiares']?>">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="id_sus">ID SUS</label>
+                        <input type="id_sus" required class="form-control" id="id_sus" name="id_sus" value="<?= $paciente['id_sus']?>">
+                    </div>
+                </div>
             </div>
 
             <div class="row">
@@ -121,6 +152,11 @@
     function initMap() {
         //local inicial do mapa
         var inicial = {lat: -28.715051, lng: -51.931089};
+
+        var cidade = "<?= $session['cidade']; ?>";
+        var estado = "<?= $session['estado']; ?>";
+        geocoder = new google.maps.Geocoder();
+        address = cidade + ", " + estado;
         //criando mapa
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15,
@@ -167,9 +203,19 @@
             };
         }
     }
-
+    function SetMapAddress(address) {  // "London, UK" for example
+        var geocoder = new google.maps.Geocoder();
+        if (geocoder) {
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.fitBounds(results[0].geometry.viewport);
+                }
+            });
+        }
+    }
 
     $(document).ready(function() {
+        SetMapAddress(address);
         corPino = $('#corPino').val();
         $("#update").submit(function(event) {
             var ajaxRequest;

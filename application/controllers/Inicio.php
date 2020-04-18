@@ -11,6 +11,7 @@ class Inicio extends CI_Controller{
 		$this->load->model('m_paciente');
         $this->load->model('m_estado');
         $this->load->model('m_unidade');
+        $this->load->model('m_cidade');
 	}
 
 	public function index(){
@@ -23,14 +24,17 @@ class Inicio extends CI_Controller{
 			$dados['condicoes'] = $this->m_paciente->getCondicao();
 			$dados['estados'] = $this->m_estado->getAll();
 			$dados['session'] = $this->session->userdata();
-            $this->template->load('app', 'visualizar', $dados);
+            return $this->template->load('app', 'visualizar', $dados);
 		}else{
             $dados['estados'] = $this->m_estado->getAll();
-            $this->template->load('app', 'usuario/login', $dados);
+            return redirect("inicio/publico");
+            //return $this->template->load('app', 'usuario/login', $dados);
         }
 	}
 
-    public function publico(){
+
+
+    public function cidade($idCidade=null){
         $logado = $this->session->userdata('logged_in');
         $dados['is_mobile'] = false;
         if($this->isMobile()){
@@ -39,7 +43,31 @@ class Inicio extends CI_Controller{
         $dados['unidades'] = $this->m_unidade->get();
         $dados['estados'] = $this->m_estado->getAll();
         $dados['session'] = $this->session->userdata();
-        $this->template->load('app', 'mapa_publico/visualizar', $dados);
+        if(empty($idCidade)){
+            return $this->template->load('app', 'mapa_publico/selecionar_cidade', $dados);
+        }
+        return redirect("inicio/publico/$idCidade");
+
+    }
+
+    public function publico($idCidade=null){
+
+        $dados['is_mobile'] = false;
+        if($this->isMobile()){
+            $dados['is_mobile'] = true;
+        }
+        if(empty($idCidade)){
+            return redirect("inicio/cidade/");
+        }
+        $dados['unidades'] = $this->m_unidade->get();
+        $dados['estados'] = $this->m_estado->getAll();
+        $dados['session'] = $this->session->userdata();
+        $cidade = $this->m_cidade->getData($idCidade);
+        if(!empty($cidade)){
+            $dados['cidade'] = $cidade[0]['cidade'];
+            $dados['estado'] = $cidade[0]['estado_nome'];
+        }
+        return $this->template->load('app', 'mapa_publico/visualizar', $dados);
     }
 
 	public function cadastrar(){

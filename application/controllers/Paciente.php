@@ -10,6 +10,8 @@ class Paciente extends CI_Controller{
 	{
 		parent::__construct();
 		$this->load->model('m_paciente');
+        $this->load->helper('url');
+
 	}
 
 	public function pacientesByCondicao(){
@@ -58,14 +60,23 @@ class Paciente extends CI_Controller{
 	public function editar($id = null)
 	{
         $id_cidade = $this->session->userdata('id_cidade');
+        $dados["session"] = $this->session->userdata();
         if($id_cidade == null){
-            redirect('usuario/logout');
+            return redirect('usuario/logout');
         }
+        $search = $this->input->get('search', false);
+        if(!empty($search)){
+          $pacientes = $this->m_paciente->search($search);
+            $dados['lista'] = true;
+            $dados['pacientes'] = $pacientes;
+            return $this->template->load('app', 'paciente/editar', $dados);
+        }
+
 		if(!$id){ //lista de usuario
 			$pacientes = $this->m_paciente->get(null , $id_cidade);
 			$dados['lista'] = true;
 			$dados['pacientes'] = $pacientes;
-            $this->template->load('app', 'paciente/editar', $dados);
+            return $this->template->load('app', 'paciente/editar', $dados);
 		}else{
 			$paciente = $this->m_paciente->get($id, $id_cidade);
 
@@ -73,7 +84,7 @@ class Paciente extends CI_Controller{
 			$dados['corPino'] = $paciente['cor'];
 			$dados['lista'] = false;
 			$dados['paciente'] = $paciente;
-            $this->template->load('app', 'paciente/editarForm', $dados);
+            return  $this->template->load('app', 'paciente/editarForm', $dados);
 		}
 	}
 
