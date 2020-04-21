@@ -46,7 +46,7 @@
                             <td><?= $i['id'];?></td>
                             <td><b><?= $i['id_sus'];?></b></td>
                             <td class="text-center"><?= $i['iniciais_nome'];?></td>
-                            <td class="text-center" style="color: <?= $i['cor']; ?>"><?= $i['doencanome'];?></td>
+                            <td class="text-center" style="color: <?= $i['cor']; ?>"><b><?= $i['doencanome'];?></b></td>
                             <td class="text-center"><?= $i['telefone'];?></td>
                             <td class="text-center"><?= date('d/m/Y', strtotime($i['datanascimento']));?></td>
                             <td class="text-center"><a class="btn btn-primary text-light" href="<?= base_url('paciente/editar/'.$i['id']); ?>"><i class="fa fa-search-plus"></i></a></td>

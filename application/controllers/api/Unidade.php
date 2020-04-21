@@ -12,13 +12,13 @@ class Unidade extends REST_Controller {
 	}
 
 
-	public function unidades_get(){ //index
+	public function unidades_get($idCidade){ //index
         if(empty($idCidade)){
-            $usuarios = $this->m_unidade->get();
-            $this->response(array('response' => $usuarios), 200);
+            $unidades = $this->m_unidade->get();
+            $this->response(array('response' => $unidades), 200);
         }else{
-            $usuarios = $this->m_unidade->get();
-            $this->response(array('response' => $usuarios), 200);
+            $unidades = $this->m_unidade->geyUnidadeByIdCidade($idCidade);
+            $this->response(array('response' => $unidades), 200);
         }
 	}
 

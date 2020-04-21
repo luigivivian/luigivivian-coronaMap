@@ -11,7 +11,7 @@ class M_unidade extends CI_Model
     public function get($id = null, $idCidade= null)
     {
         if (!empty($id) && !empty($idCidade)) {
-            $query = $this->db->query("select * from gmap_unidade where idCidade = $idCidade and id = $id;");
+            $query = $this->db->query("select * from gmap_unidade where idCidade = $idCidade and id = $id and (total_confirmados > 0 or total_suspeitos > 0 or total_curados > 0) ;");
             if ($query->num_rows() === 1) {
                 return $query->row_array();
             } else {
@@ -26,6 +26,107 @@ class M_unidade extends CI_Model
             }
         }
     }
+
+    public function geyUnidadeByIdCidade($id){
+	    if(empty($id))
+	        return false;
+        $query = $this->db->query("select * from gmap_unidade where idCidade = $id and (total_pacientes_confirmados > 0 or total_pacientes_suspeitos > 0 or total_pacientes_curados > 0) ;");
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
+        return false;
+    }
+
+
+
+
+    public function atualizarDadosUnidades($idCidade){
+
+	    $selectUnidades = $this->db->query("select id from gmap_unidade gu where idCidade = $idCidade;");
+        $unidades = $selectUnidades->result_array();
+
+        if(empty($unidades)){
+            return false;
+        }
+
+        foreach($unidades as $uKey=>$u) {
+            $unidades[$uKey]['total_pacientes_suspeitos'] = 0;
+            $unidades[$uKey]['total_pacientes_confirmados'] = 0;
+            $unidades[$uKey]['total_pacientes_curados'] = 0;
+
+        }
+
+
+        $suspeitosConst = array(CONDICAO_COVID_SINDROME_GRIPAL, CONDICAO_COVID_SUSPEITO);
+        $selectTotalCasosSuspeitos = $this->db->query("select count(id) as total_pacientes_suspeitos, `idUnidade`
+                                                        from gmap_paciente gp
+                                                        where idCidade = $idCidade and (idCondicao = $suspeitosConst[0] or idCondicao = $suspeitosConst[1])
+                                                        group by idUnidade;");
+
+        if ($selectTotalCasosSuspeitos->num_rows() > 0) {
+            $totalCasosSuspeitos = $selectTotalCasosSuspeitos->result_array();
+            foreach($unidades as $uKey=>$u) {
+                foreach($totalCasosSuspeitos as $cKey=>$caso) {
+                    if($u['id'] == $caso['idUnidade']){
+                        $unidades[$uKey]['total_pacientes_suspeitos'] = intval($caso['total_pacientes_suspeitos']);
+                        //$unidadesNew[$u['id']] = array('id_unidade'=> $u['id'], 'total_suspeitos'=>$caso['total_suspeitos']);
+                    }
+                }
+            }
+        }
+
+        $confirmadosConst = array(CONDICAO_COVID_CONFIRMADO_2, CONDICAO_COVID_CONFIRMADO);
+        $selectTotalCasosConfirmados = $this->db->query("select count(id) as total_pacientes_confirmados, `idUnidade`
+                                                        from gmap_paciente gp
+                                                        where idCidade = $idCidade and (idCondicao = $confirmadosConst[0] or idCondicao = $confirmadosConst[1])
+                                                        group by idUnidade;");
+
+        if ($selectTotalCasosConfirmados->num_rows() > 0) {
+            $totalCasosConfirmados = $selectTotalCasosConfirmados->result_array();
+            foreach($unidades as $uKey=>$u) {
+                foreach($totalCasosConfirmados as $cKey=>$caso) {
+                    if($u['id'] == $caso['idUnidade']){
+                        $unidades[$uKey]['total_pacientes_confirmados'] = intval($caso['total_pacientes_confirmados']);
+
+                    }
+                }
+            }
+        }
+
+        $curadosConst = CONDICAO_COVID_CURADO;
+        $selectTotalCasosCurados = $this->db->query("select count(id) as total_pacientes_curados, `idUnidade`
+                                                        from gmap_paciente gp
+                                                        where idCidade = $idCidade and idCondicao = $curadosConst
+                                                        group by idUnidade;");
+
+        if ($selectTotalCasosCurados->num_rows() > 0) {
+            $totalCasosCurados = $selectTotalCasosCurados->result_array();
+            foreach($unidades as $uKey=>$u) {
+                foreach($totalCasosCurados as $cKey=>$caso) {
+                    if($u['id'] == $caso['idUnidade']){
+                        //$unidadesNew3[$u['id']] = array('id_unidade'=> $u['id'], 'total_curados'=>$caso['total_curados']);
+                        $unidades[$uKey]['total_pacientes_curados'] = intval($caso['total_pacientes_curados']);
+                    }
+                }
+            }
+        }
+        $update = $this->db->update_batch('gmap_unidade', $unidades, 'id');
+        return $update;
+    }
+
+    public function getTotalPacientesGroupByUnidade($condicao = null, $idCidade= null)
+    {
+        if (!empty($id) && !empty($idCidade)) {
+            $query = $this->db->query("select * from gmap_unidade where idCidade = $idCidade and id = $id;");
+            if ($query->num_rows() === 1) {
+                return $query->row_array();
+            } else {
+                return false;
+            }
+        }
+
+    }
+
 
 
     public function getAll($idCidade){

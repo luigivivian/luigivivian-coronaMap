@@ -67,6 +67,10 @@
                 </div>
             </div>
         </div>
+
+        <div class="col col-md-3 offset-md-5 offset-sm-0 col-sm-12 mt-5">
+            <a class="btn btn-outline-danger" href="<?= base_url('/usuario')?>">Acessar área administrativa</a>
+        </div>
     </div>
 
     <footer class="page-footer" role="contentinfo" style="position: fixed; bottom: 0; width: 100%">

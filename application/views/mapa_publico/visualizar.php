@@ -122,6 +122,7 @@
         var lng;
         var cidade = "<?= $cidade; ?>";
         var estado = "<?= $estado; ?>";
+        var idCidade = "<?= $idCidade; ?>";
         console.log(cidade);
         //local do mapa
         var inicial = {lat: -28.715051, lng: -51.931089};
@@ -153,7 +154,7 @@
         // refactor to get locais
         function getUnidades(){
             $.ajax({
-                url:"<?= base_url();?>api/unidade/unidades/",
+                url:"<?= base_url();?>api/unidade/unidades/"+<?=$idCidade?>,
                 dataType:'json',
                 type:"GET",
             }).done(function(data) {
@@ -213,7 +214,8 @@
 
 //funcao para adicionar marker no mapa
         function placeMarker(location, cor, dados) {
-            console.log(dados)
+            console.log('teste');
+            console.log(dados);
             var contentString = '<div id="content">'+
                 '<div id="siteNotice">'+
                 '</div>'+
@@ -228,18 +230,20 @@
                 content: contentString
             });
 
+            var totalSuspeitos = parseInt(dados.total_pacientes_suspeitos);
+            var totalConfirmados = parseInt(dados.total_pacientes_confirmados);
+
             function calcAge(dateString) {
                 var birthday = +new Date(dateString);
                 return ~~((Date.now() - birthday) / (31557600000));
             }
-
             var oMarker = new google.maps.Marker({
                 position: location,
                 sName: "Marker Name",
                 map: map,
                 icon: {
                     path: google.maps.SymbolPath.CIRCLE,
-                    scale: 8.5,
+                    scale: parseInt(dados.total_pacientes_suspeitos),
                     strokeColor: '#FF0000',
                     strokeOpacity: 0.8,
                     strokeWeight: 2,
@@ -248,9 +252,17 @@
                 },
             });
 
+            var radius = ((totalSuspeitos + totalConfirmados) * ((totalSuspeitos * 0.5) + (totalConfirmados * 3)) / 10);
+            if(radius < 10){
+                radius = 15;
+            }
+            if(radius >= 150){
+                radius = radius = 80;
+            }
+
             oMarker.setIcon({
                 path: google.maps.SymbolPath.CIRCLE,
-                scale: 20,
+                scale: radius,
                 strokeColor: '#FF0000',
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
@@ -277,6 +289,10 @@
             geocoder.geocode({ 'address': address }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     map.fitBounds(results[0].geometry.viewport);
+                    var location = results[0].geometry.location;
+                    console.log(location);
+                    map.setCenter(location);
+                    map.setZoom(15);
                 }
             });
         }
@@ -284,7 +300,7 @@
 
 
     $(document).ready(function() {
-
+        SetMapAddress(address);
         //chamando controller dentro da pasta /api/mapa, metodo get
         function pinSymbol(color) {
             return {
@@ -298,7 +314,7 @@
             };
         }
 
-        SetMapAddress(address);
+
 
 
     });

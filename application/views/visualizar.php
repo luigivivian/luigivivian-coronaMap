@@ -229,12 +229,9 @@
 				var i;
 				for (i = 0; i < data['response'].length; i++) {
 					var myLatLng = {lat: parseFloat(data['response'][i]['lat']), lng: parseFloat(data['response'][i]['lng'])};
-					console.log(parseFloat(myLatLng.lat));
-					console.log(parseFloat(myLatLng.lng));
+
 					placeMarker(myLatLng, data['response'][i]['cor'], data['response'][i]);
-					console.log("Pino colocado");
-					console.log('response:');
-					console.log(data['response']);
+
 				}
 				if(data['response'] == false){
 
@@ -257,7 +254,7 @@
                     }
                     toastr.warning("Nenhum paciente cadastrado !");
                 }
-				console.log(data['response']);
+
 			});
 		}
 

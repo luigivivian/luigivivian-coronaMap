@@ -22,7 +22,6 @@
 </style>
 <body>
 <?php $this->load->view('menu');?>
-<?php var_dump($paciente);?>
 <div class="container mt-xl-4">
         <h5>Dados paciente Form</h5>
         <form id="update" method="POST" action="<?= base_url('api/paciente')?>">

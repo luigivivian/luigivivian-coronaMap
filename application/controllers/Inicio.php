@@ -40,7 +40,6 @@ class Inicio extends CI_Controller{
         if($this->isMobile()){
             $dados['is_mobile'] = true;
         }
-        $dados['unidades'] = $this->m_unidade->get();
         $dados['estados'] = $this->m_estado->getAll();
         $dados['session'] = $this->session->userdata();
         if(empty($idCidade)){
@@ -59,7 +58,9 @@ class Inicio extends CI_Controller{
         if(empty($idCidade)){
             return redirect("inicio/cidade/");
         }
-        $dados['unidades'] = $this->m_unidade->get();
+
+        $dados['unidades'] = $this->m_unidade->geyUnidadeByIdCidade($idCidade);
+        $dados['idCidade'] = $idCidade;
         $dados['estados'] = $this->m_estado->getAll();
         $dados['session'] = $this->session->userdata();
         $cidade = $this->m_cidade->getData($idCidade);

@@ -25,11 +25,12 @@ class M_Paciente extends CI_Model
         }
     }
 
-    public function getTotalPacientesByCondicao(){
+    public function getTotalPacientesByCondicao($idCidade){
         $query = $this->db->query("SELECT c.id, c.nome as cnome, c.cor, count(c.id) as total, p.*
                                     from gmap_paciente p
                                     INNER JOIN gmap_tipoCondicao c
                                     ON p.idCondicao = c.id
+                                    where p.idCidade = $idCidade
                                     group by c.id
                                     order by c.nome ASC");
         if ($query->num_rows() > 0) {
@@ -38,11 +39,12 @@ class M_Paciente extends CI_Model
             return false;
         }
     }
-    public function getPacientesECondicoes(){
+    public function getPacientesECondicoes($idCidade){
         $query = $this->db->query("SELECT p.id, c.nome as cnome, c.cor, p.iniciais_nome as iniciais_nome, p.telefone, p.datanascimento, current_date as dataAtual
                                 from gmap_paciente p
                                 INNER JOIN gmap_tipoCondicao c
                                 ON p.idCondicao = c.id
+                                where p.idCidade = $idCidade
                                 order by c.nome ASC");
         if ($query->num_rows() > 0) {
             return $query->result_array();

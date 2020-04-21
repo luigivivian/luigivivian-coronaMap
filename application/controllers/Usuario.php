@@ -13,6 +13,7 @@ class Usuario extends CI_Controller{
 		$this->load->model('m_paciente');
         $this->load->model('m_cidade');
         $this->load->model('m_estado');
+        $this->load->model('m_unidade');
 	}
 
 
@@ -139,6 +140,7 @@ class Usuario extends CI_Controller{
 				$this->session->set_userdata($data);
 				$dados['session'] = $data;
 				$dados['condicoes'] = $this->m_paciente->getCondicao();
+				$this->m_unidade->atualizarDadosUnidades($idCidade);
 				redirect('inicio');
 			} else {    //dados incorretos
 				$dados['erro'] = 1;

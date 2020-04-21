@@ -10,10 +10,15 @@ class Unidade extends CI_Controller{
 	{
 		parent::__construct();
 		$this->load->model('m_paciente');
+        $this->load->model('m_unidade');
 	}
 
 
 
+	public function index(){
+
+        $this->m_unidade->atualizarDadosUnidades(1);
+    }
 
 
 	public function cadastrar($id = null)

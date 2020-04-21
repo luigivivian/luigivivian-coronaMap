@@ -15,14 +15,25 @@ class Paciente extends CI_Controller{
 	}
 
 	public function pacientesByCondicao(){
-        $query = $this->m_paciente->getTotalPacientesByCondicao();
+        $session = $this->session->userdata();
+        if(empty($session)){
+            return redirect("inicio/publico");
+        }
+        $idCidade = $session['id_cidade'];
+        $query = $this->m_paciente->getTotalPacientesByCondicao($idCidade);
         $dados['lista'] = $query;
         $this->load->view('relatorios/totalPacientesPorCondicao', $dados);
     }
 
 
     public function gerarPDFCondicoesPacientes(){
-        $query = $this->m_paciente->getPacientesECondicoes();
+        $session = $this->session->userdata();
+        if(empty($session)){
+            return redirect("inicio/publico");
+        }
+
+        $idCidade = $session['id_cidade'];
+        $query = $this->m_paciente->getPacientesECondicoes($idCidade);
         $dados['lista'] = $query;
         $this->load->view('relatorios/pacientesECondicoes', $dados);
         // Get output html
@@ -40,7 +51,14 @@ class Paciente extends CI_Controller{
     }
 
     public function gerarPDFPacientesByCondicao(){
-        $query = $this->m_paciente->getTotalPacientesByCondicao();
+        $session = $this->session->userdata();
+
+        if(empty($session)){
+            return redirect("inicio/publico");
+        }
+        $idCidade = $session['id_cidade'];
+
+        $query = $this->m_paciente->getTotalPacientesByCondicao($idCidade);
         $dados['lista'] = $query;
         $this->load->view('relatorios/totalPacientesPorCondicao', $dados);
         // Get output html
