@@ -166,7 +166,6 @@
 
 
 
-
 <script
 	src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -201,7 +200,7 @@
 
 		//criando mapa
 		map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 15,
+			zoom: 30,
 			center: inicial,
 			clickableIcons: false
 		});
@@ -221,7 +220,7 @@
 
 		function getByCondicao(){
 			var idCondicao = $('#condicao').val();
-			var idCidade = 1;
+            var idCidade = "<?= $session['id_cidade']; ?>";
 			$.ajax({
 				url:"<?= base_url();?>api/paciente/pinos/"+idCondicao+"/"+idCidade,
 				dataType:'json',
@@ -230,12 +229,9 @@
 				var i;
 				for (i = 0; i < data['response'].length; i++) {
 					var myLatLng = {lat: parseFloat(data['response'][i]['lat']), lng: parseFloat(data['response'][i]['lng'])};
-					console.log(parseFloat(myLatLng.lat));
-					console.log(parseFloat(myLatLng.lng));
+
 					placeMarker(myLatLng, data['response'][i]['cor'], data['response'][i]);
-					console.log("Pino colocado");
-					console.log('response:');
-					console.log(data['response']);
+
 				}
 				if(data['response'] == false){
 
@@ -258,7 +254,7 @@
                     }
                     toastr.warning("Nenhum paciente cadastrado !");
                 }
-				console.log(data['response']);
+
 			});
 		}
 
@@ -294,15 +290,15 @@
 			};
 		}
 
+
 //funcao para adicionar marker no mapa
 		function placeMarker(location, cor, dados) {
-			console.log(dados)
-            var dataFimQuarentena = new Date(dados.data_fim_quarentena).toLocaleDateString('pt-BR', {timeZone: 'UTC'});
 
+            var dataFimQuarentena = new Date(dados.data_fim_quarentena).toLocaleDateString('pt-BR', {timeZone: 'UTC'});
 			var contentString = '<div id="content">'+
 				'<div id="siteNotice">'+
 				'</div>'+
-				'<h3 id="firstHeading" class="firstHeading">'+dados.nome+ ' ' +dados.sobrenome+'</h3>'+
+				'<h3 id="firstHeading" class="firstHeading">'+dados.iniciais_nome+'</h3>'+
 				'<div id="bodyContent">'+
 				'<p>Condição: <b><span style="color:'+cor+'">'+ dados.doencanome +'</span></b></p>'+
                 '<p>Idade: '+ dados.idade+' </p>'+
@@ -318,7 +314,10 @@
 				content: contentString
 			});
 
-
+            function calcAge(dateString) {
+                var birthday = +new Date(dateString);
+                return ~~((Date.now() - birthday) / (31557600000));
+            }
 
 
 			var marker = new google.maps.Marker({
@@ -327,6 +326,28 @@
 				icon: pinSymbol(cor),
 				draggable: false
 			});
+            // adicionando circulo no mapa
+            // var oMarker = new google.maps.Marker({
+            //     position: location,
+            //     sName: "Marker Name",
+            //     map: map,
+            //     icon: {
+            //         path: google.maps.SymbolPath.CIRCLE,
+            //         scale: 8.5,
+            //         fillColor: "#F00",
+            //         fillOpacity: 0.4,
+            //         strokeWeight: 0.4
+            //     },
+            // });
+            //
+            // oMarker.setIcon({
+            //     path: google.maps.SymbolPath.CIRCLE,
+            //     scale: 20,
+            //     fillColor: "#F00",
+            //     fillOpacity: 0.8,
+            //     strokeWeight: 1
+            // })
+
 			pinos.push(marker);
 			marker.addListener('click', function() {
 				infowindow.open(map, marker);
@@ -363,6 +384,7 @@
 				strokeColor: '#000',
 				strokeWeight: 2,
 				scale: 1
+
 			};
 		}
 

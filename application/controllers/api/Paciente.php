@@ -67,6 +67,11 @@ class Paciente extends REST_Controller {
                 'rules' => 'required|max_length[200]'
             ),
             array(
+                'field' => 'idUnidade',
+                'label' => 'idUnidade',
+                'rules' => 'required|max_length[200]'
+            ),
+            array(
                 'field' => 'datanascimento',
                 'label' => 'datanascimento',
                 'rules' => 'required|max_length[200]'
@@ -79,7 +84,7 @@ class Paciente extends REST_Controller {
             $this->response(array('error', 'Preencha todos os dados'), 400);
         }
         $data = $this->post();
-        $data['datanascimento'] = date('Y-m-d', strtotime($data['datanascimento']));
+        $data['datanascimento'] = date('Y-m-d H:i:s', strtotime($data['datanascimento']));
         $query = $this->m_paciente->store('gmap_paciente',$data); //armazena dados no database
 
         if(is_null($query)){ //caso os dados forem armazenados com sucesso

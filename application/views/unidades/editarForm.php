@@ -27,43 +27,25 @@
         <form id="update" method="POST" action="<?= base_url('api/paciente')?>">
             <div class="form-group">
                 <label for="exampleInputEmail1">ID</label>
-                <input type="number" required class="form-control" id="id" value="<?= $paciente['id']?>" disabled>
+                <input type="number" required class="form-control" id="id" value="<?= $unidade['id']?>">
             </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="exampleInputPassword1">INICIAIS</label>
-                        <input type="text" required class="form-control" id="iniciais_nome" name="iniciais_nome" value="<?= $paciente['iniciais_nome']?>" placeholder="Nome">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">DATA DE NASCIMENTO</label>
-                        <input type="date" required class="form-control" id="datanascimento" name="datanascimento" value="<?= date('Y-m-d', strtotime($paciente['datanascimento']))?>" placeholder="Nome">
+                        <label for="exampleInputPassword1">NOME</label>
+                        <input type="text" required class="form-control" id="nome" name="nome" value="<?= $unidade['nome']?>" placeholder="Nome">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label for="exampleInputPassword1">TELEFONE</label>
-                        <input type="text" required class="form-control" id="telefone" name="telefone" value="<?= $paciente['telefone']?>" placeholder="Nome">
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="data_inicio_quarentena">DATA INICIO QUARENTENA</label>
-                        <input type="date" required class="form-control" id="data_inicio_quarentena" name="data_inicio_quarentena" value="<?= date('Y-m-d', strtotime($paciente['data_inicio_quarentena']))?>">
+                        <label for="exampleInputPassword1">BAIRRO</label>
+                        <input type="text" required class="form-control" id="bairro" name="bairro" value="<?= $unidade['bairro']?>" placeholder="bairro">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label for="data_fim_quarentena">DATA FIM QUARENTENA</label>
-                        <input type="date" required class="form-control" id="data_fim_quarentena" name="data_fim_quarentena" value="<?= date('Y-m-d', strtotime($paciente['data_fim_quarentena']))?>">
+                        <label for="total_familiares">NÚMERO DE LEITOS</label>
+                        <input type="number" required class="form-control" id="numero_leitos" name="numero_leitos" value="<?= $unidade['numero_leitos']?>">
                     </div>
                 </div>
             </div>
@@ -71,49 +53,31 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="total_familiares">NÚMERO DE FAMILIARES</label>
-                        <input type="number" required class="form-control" id="total_familiares" name="total_familiares" value="<?= $paciente['total_familiares']?>">
+                        <label for="data_inicio_quarentena">TOTAL PACIENTES SUSPEITOS</label>
+                        <input type="text" readonly disabled class="form-control" id="total_pacientes_suspeitos" name="total_pacientes_suspeitos" value="<?= $unidade['total_pacientes_suspeitos']; ?>">
                     </div>
                 </div>
+
                 <div class="col">
                     <div class="form-group">
-                        <label for="id_sus">ID SUS</label>
-                        <input type="id_sus" required class="form-control" id="id_sus" name="id_sus" value="<?= $paciente['id_sus']?>">
+                        <label for="data_inicio_quarentena">TOTAL PACIENTES CURADOS</label>
+                        <input type="text" readonly disabled class="form-control" id="total_pacientes_curados" name="total_pacientes_curados"  value="<?= $unidade['total_pacientes_curados']; ?>">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label for="data_inicio_quarentena">TOTAL PACIENTES CONFIRMADOS</label>
+                        <input type="text" readonly disabled class="form-control" id="total_pacientes_confirmados" name="total_pacientes_confirmados"  value="<?= $unidade['total_pacientes_confirmados']; ?>">
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">RUA</label>
-                        <input type="text" required class="form-control" id="rua" name="rua" value="<?= $paciente['rua']?>" placeholder="Nome">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">NÚMERO</label>
-                        <input type="text" required class="form-control" id="numero" name="numero" value="<?= $paciente['numero']?>" placeholder="Nome">
-                    </div>
-                </div>
 
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">ENDEREÇO</label>
-                <input type="text" required class="form-control" id="endereco" name="endereco" value="<?= $paciente['endereco']?>" placeholder="Nome">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">CONDIÇÃO CLINICA</label>
-                <select class="form-control" name="idCondicao">
-                    <?php foreach($condicoes as $c){?>
-                        <option <?= $paciente['idCondicao'] == $c['id'] ? "selected" : ""; ?> value="<?= $c['id'];?>"><?= $c['nome']; ?></option>
-                    <?php }?>
-                </select>
-            </div>
-            <input type="hidden" value="<?= $paciente['lat']; ?>" id="lat" name="lat" required>
-            <input type="hidden" value="<?= $paciente['lng']; ?>" id="lng" name="lng" required>
+            <input type="hidden" value="<?= $unidade['lat']; ?>" id="lat" name="lat" required>
+            <input type="hidden" value="<?= $unidade['lng']; ?>" id="lng" name="lng" required>
         </form>
-        <input type="hidden" value="<?= $corPino; ?>" id="corPino" required>
+        <input type="hidden" value="red" id="corPino" required>
         <div class="text-center">
             <h4>Arraste o pino com o mouse para alterar a localização</h4>
         </div>
@@ -122,7 +86,7 @@
 
         <div class="mt-4 mb-4">
             <button type="submit" form="update" class="btn btn-success btn-block">SALVAR</button>
-            <a href="<?= base_url('paciente/editar');?>" class="btn btn-danger btn-block text-light mt-3">CANCELAR</a>
+            <a href="<?= base_url('unidade/editar');?>" class="btn btn-danger btn-block text-light mt-3">CANCELAR</a>
         </div>
 </div>
 
@@ -222,7 +186,7 @@
 
             var values = $(this).serialize();
             ajaxRequest = $.ajax({
-                url: "<?= base_url();?>api/paciente/<?= $paciente['id']?>",
+                url: "<?= base_url();?>api/unidade/<?= $unidade['id']?>",
                 type: "put",
                 data: values
             });

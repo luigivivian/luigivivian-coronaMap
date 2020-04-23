@@ -69,7 +69,7 @@
                                     <div class="panel-content">
                                         <div class="panel-tag" id="barChartSuspeitosInfo">
                                             Esse gráfico representa o crescimento do número de casos suspeitos de covid-19                                        </div>
-                                        <div id="lineChart">
+                                        <div id="lineChartSuspeitos">
                                             <canvas style="width:100%; height:300px;"></canvas>
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@
                                         <div class="panel-tag" id="barChartConfirmadosInfo">
                                             Esse gráfico representa o crescimento do número de casos confirmados de covid-19
                                         </div>
-                                        <div id="barChartConfirmados">
+                                        <div id="lineChartConfirmados">
                                             <canvas style="width:100%; height:300px;"></canvas>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@
                                 <div class="panel-container show">
                                     <div class="panel-content">
                                         <div class="panel-tag">
-                                            Pie charts are probably the most commonly used chart there are. They are divided into segments, the arc of each segment shows the proportional value of each piece of data
+                                            Esse gráfico representa a faixa etaria dos pacientes de casos suspeitos de covid-19
                                         </div>
                                         <div id="pieChart">
                                             <canvas style="width:100%; height:300px;"></canvas>
@@ -144,7 +144,7 @@
             <footer class="page-footer" role="contentinfo">
                 <div class="d-flex align-items-center flex-1 text-muted">
                     <span class="hidden-md-down fw-700">2020 © Corona Map by&nbsp;</span>
-                    <a href="https://www.linkedin.com/in/luigi-vivian-44752b16b/" class='text-primary fw-500' target='_blank'>Luigi Vivian</a>
+                    <a href="https://www.linkedin.com/in/luigi-vivian-44752b16b/" class='text-primary fw-500' target='_blank'>Luigi Vivian | UPF</a>
                 </div>
             </footer>
             <!-- END Page Footer -->
@@ -279,32 +279,32 @@
 
     var casosSuspeitos = new Array();
     <?php if(!empty($casosSuspeitos)):?>
-    <?php foreach($casosSuspeitos as $key => $val){ ?>
-        casosSuspeitos.push('<?php echo $val['total']; ?>');
-    <?php } ?>
+        <?php foreach($casosSuspeitos as $key => $val){ ?>
+            casosSuspeitos.push('<?php echo $val['total']; ?>');
+        <?php } ?>
     <?php endif;?>
 
     var casosConfirmados = new Array();
     <?php if(!empty($casosConfirmados)):?>
         <?php foreach($casosConfirmados as $key => $val){ ?>
-            casosSuspeitos.push('<?php echo $val['total']; ?>');
+            casosConfirmados.push('<?= $val['total']; ?>');
         <?php } ?>
     <?php endif;?>
 
 
     var casosSuspeitosLabels = new Array();
     <?php if(!empty($casosSuspeitosLabels)):?>
-    <?php foreach($casosSuspeitosLabels as $key => $val){ ?>
-    casosSuspeitosLabels.push('<?php echo $val; ?>');
-    <?php } ?>
+        <?php foreach($casosSuspeitosLabels as $key => $val){ ?>
+            casosSuspeitosLabels.push('<?= $val; ?>');
+        <?php } ?>
     <?php endif;?>
 
 
     var casosConfirmadosLabels = new Array();
     <?php if(!empty($casosConfirmadosLabels)):?>
-    <?php foreach($casosConfirmadosLabels as $key => $val){ ?>
-    casosConfirmadosLabels.push('<?php echo $val; ?>');
-    <?php } ?>
+        <?php foreach($casosConfirmadosLabels as $key => $val){ ?>
+            casosConfirmadosLabels.push('<?= $val; ?>');
+        <?php } ?>
     <?php endif;?>
     console.log(casosConfirmados);
     console.log(casosSuspeitos);
@@ -400,7 +400,7 @@
 
 
     /* line chart */
-    var lineChart = function()
+    var lineChartSuspeitos = function()
     {
         var config = {
             type: 'line',
@@ -484,44 +484,49 @@
                         }
                 }
         };
-        new Chart($("#lineChart > canvas").get(0).getContext("2d"), config);
+        new Chart($("#lineChartSuspeitos > canvas").get(0).getContext("2d"), config);
     }
 
 
-
-    var barChartConfirmados = function()
+    /* line chart */
+    var lineChartConfirmados = function()
     {
-
-
-
-        var barChartData = {
-            labels: casosConfirmadosLabels,
-            datasets: [
-                {
-                    label: "Casos confirmados",
-                    backgroundColor: color.danger._300,
-                    borderColor: color.danger._500,
-                    borderWidth: 1,
-                    data: casosConfirmados,
-
-                },
-               ]
-
-        };
         var config = {
-            type: 'bar',
-            data: barChartData,
+            type: 'line',
+            data:
+                {
+                    labels: casosConfirmadosLabels,
+                    datasets: [
+                        {
+                            label: "Casos Confirmados",
+                            borderColor: color.danger._500,
+                            pointBackgroundColor: color.danger._700,
+                            pointBorderColor: 'rgba(0, 0, 0, 0)',
+                            pointBorderWidth: 1,
+                            borderWidth: 1,
+                            pointRadius: 3,
+                            pointHoverRadius: 4,
+                            data: casosConfirmados,
+                            fill: false
+                        }]
+                },
             options:
                 {
                     responsive: true,
-                    legend:
-                        {
-                            position: 'top',
-                        },
                     title:
                         {
                             display: false,
-                            text: 'Bar Chart'
+                            text: 'Line Chart'
+                        },
+                    tooltips:
+                        {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                    hover:
+                        {
+                            mode: 'nearest',
+                            intersect: true
                         },
                     scales:
                         {
@@ -567,12 +572,101 @@
                                 }]
                         }
                 }
-        }
-        new Chart($("#barChartConfirmados > canvas").get(0).getContext("2d"), config);
+        };
+        new Chart($("#lineChartConfirmados > canvas").get(0).getContext("2d"), config);
     }
 
 
-
+    //
+    // var barChartConfirmados = function()
+    // {
+    //
+    //
+    //
+    //     var barChartData = {
+    //         labels: casosConfirmadosLabels,
+    //         datasets: [
+    //             {
+    //                 label: "Casos confirmados",
+    //                 backgroundColor: color.danger._300,
+    //                 borderColor: color.danger._500,
+    //                 borderWidth: 1,
+    //                 data: casosConfirmados,
+    //
+    //             },
+    //            ]
+    //
+    //     };
+    //     var config = {
+    //         type: 'bar',
+    //         data: barChartData,
+    //         options:
+    //             {
+    //                 responsive: true,
+    //                 legend:
+    //                     {
+    //                         position: 'top',
+    //                     },
+    //                 title:
+    //                     {
+    //                         display: false,
+    //                         text: 'Bar Chart'
+    //                     },
+    //                 scales:
+    //                     {
+    //                         xAxes: [
+    //                             {
+    //                                 display: true,
+    //                                 scaleLabel:
+    //                                     {
+    //                                         display: false,
+    //                                         labelString: '6 months forecast'
+    //                                     },
+    //                                 gridLines:
+    //                                     {
+    //                                         display: true,
+    //                                         color: "#f2f2f2"
+    //                                     },
+    //                                 ticks:
+    //                                     {
+    //                                         beginAtZero: true,
+    //                                         fontSize: 11
+    //                                     }
+    //                             }],
+    //                         yAxes: [
+    //                             {
+    //                                 display: true,
+    //                                 scaleLabel:
+    //                                     {
+    //                                         display: false,
+    //                                         labelString: 'Profit margin (approx)'
+    //                                     },
+    //                                 gridLines:
+    //                                     {
+    //                                         display: true,
+    //                                         color: "#f2f2f2"
+    //                                     },
+    //                                 ticks:
+    //                                     {
+    //                                         beginAtZero: true,
+    //                                         fontSize: 11,
+    //                                         stepSize: 1,
+    //                                         precision: 1,
+    //                                     }
+    //                             }]
+    //                     }
+    //             }
+    //     }
+    //     new Chart($("#barChartConfirmados > canvas").get(0).getContext("2d"), config);
+    // }
+    var faixaEtariaSuspeitos = new Array();
+    var faixaEtariaSuspeitosLabels = new Array("10 ATÉ 20 ANOS", "20 ATÉ 30 ANOS", "30 ATÉ 50 ANOS", "ACIMA DE 60 ANOS");
+    <?php if(!empty($faixaEtariaCasosSuspeitos)):?>
+    <?php foreach($faixaEtariaCasosSuspeitos as $key => $val){ ?>
+        faixaEtariaSuspeitos.push('<?= $val['total']; ?>');
+    <?php } ?>
+    <?php endif;?>
+    console.log(faixaEtariaSuspeitos);
     /* pie chart */
     var pieChart = function(data, labels)
     {
@@ -584,17 +678,16 @@
                 {
                     datasets: [
                         {
-                            data: data,
+                            data: faixaEtariaSuspeitos,
                             backgroundColor: [
                                 color.primary._200,
-                                color.primary._400,
-                                color.success._50,
-                                color.success._300,
-                                color.success._500
+                                color.success._400,
+                                color.warning._50,
+                                color.danger._300,
                             ],
                             label: 'My dataset' // for legend
                         }],
-                    labels: labels
+                    labels: faixaEtariaSuspeitosLabels
                 },
             options:
                 {
@@ -613,17 +706,10 @@
     /* initialize all charts */
     $(document).ready(function()
     {
-        var data = [
-            0,
-            2,
-            1,
-            2,
-            1
-        ];
-        var labels = ["1 até 10 anos", "10 até 20 anos", "20 até 40 anos", "40 até 70", "> 70"];
-        barChartConfirmados();
-        lineChart();
-        pieChart(data, labels);
+
+        lineChartConfirmados();
+        lineChartSuspeitos();
+        pieChart();
 
     });
 </script>

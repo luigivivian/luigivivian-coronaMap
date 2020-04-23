@@ -6,16 +6,20 @@
         $condicao['id'] = 1;
     }?>
     <?php if($lista){?>
-        <button type="button" class="btn btn-success btn-block mt-2 mb-3" data-toggle="modal" data-target="#exampleModal">
-            Cadastrar nova condição
-        </button>
+<!--        <button type="button" class="btn btn-success btn-block mt-2 mb-3" data-toggle="modal" data-target="#exampleModal">-->
+<!--            Cadastrar nova condição-->
+<!--        </button>-->
+
+       <div class="mt-4">
+           <h3>Configurações da aplicação, alterações nessa página não são permitidas</h3>
+       </div>
         <div class="tabela">
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col" >ID</th>
                     <th scope="col">NOME</th>
-                    <th scope="col" class="text-center">OPÇÕES</th>
+<!--                    <th scope="col" class="text-center">OPÇÕES</th>-->
                 </tr>
                 </thead>
                 <tbody id="tabela">
@@ -23,10 +27,10 @@
                     <tr>
                         <td><?= $i['id'];?></td>
                         <td><i class="fa fa-circle mr-xl-2" style="color: <?= $i['cor']; ?>"></i><?= $i['nome'];?></td>
-                        <td class="text-center">
-                            <a class="btn btn-primary text-light" href="<?= base_url('condicao/editar/'.$i['id']); ?>"><i class="fa fa-search-plus"></i></a>
-                            <a class="btn btn-danger text-light" onclick="return confirm('Deseja realmente deletar?');" href="<?= base_url('condicao/deletar/'.$i['id']); ?>"><i class="fa fa-trash"></i></a>
-                        </td>
+<!--                        <td class="text-center">-->
+<!--                            <a class="btn btn-primary text-light" href="--><?//= base_url('condicao/editar/'.$i['id']); ?><!--"><i class="fa fa-search-plus"></i></a>-->
+<!--                            <a class="btn btn-danger text-light" onclick="return confirm('Deseja realmente deletar?');" href="--><?//= base_url('condicao/deletar/'.$i['id']); ?><!--"><i class="fa fa-trash"></i></a>-->
+<!--                        </td>-->
                     </tr>
                 <?php }?>
                 </tbody>

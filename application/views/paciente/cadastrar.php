@@ -56,16 +56,16 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" name="nome" class="form-control" id="nome" aria-describedby="nomeHelp" placeholder="Digite seu nome...">
-                                    <small id="nomeHELP" class="form-text text-muted">campo obrigatório</small>
+                                    <label for="iniciais_nome">Iniciais do nome</label>
+                                    <input type="text" name="iniciais_nome" required class="form-control" id="iniciais_nome" aria-describedby="iniciais_nomeHelp" placeholder="Digite as inicias do nome do paciente...">
+                                    <small id="iniciais_nomeHelp" class="form-text text-muted">campo obrigatório</small>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="sobrenome">Sobrenome</label>
-                                    <input type="text" name="sobrenome" class="form-control" id="sobrenome" aria-describedby="sobrenomeHelp" placeholder="Digite seu sobrenome...">
-                                    <small id="sobrenomeHELP" class="form-text text-muted">campo obrigatório</small>
+                                    <label for="sobrenome">ID CADASTRO SUS</label>
+                                    <input type="number" name="id_sus" required class="form-control" id="id_sus" aria-describedby="id_susHelp" placeholder="Digite o cadastro do sus...">
+                                    <small id="id_susHelp" class="form-text text-muted">campo obrigatório</small>
                                 </div>
                             </div>
                         </div>
@@ -73,15 +73,40 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
+                                    <label for="numero_familiares">Número de familiares</label>
+                                    <input type="text"  name="total_familiares" required class="form-control" id="numero_familiares" aria-describedby="numeroFamiliaresHELP" placeholder="Digite o número de familiares">
+                                    <small id="numeroFamiliaresHELP" class="form-text text-muted">campo obrigatório</small>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="idUnidade">Selecione a unidade de saúde</label>
+                                    <select class="custom-select" id="idUnidade" name="idUnidade">
+                                        <option value="" disabled selected>Selecione uma opcao !</option>
+                                        <?php if(!empty($unidades)):?>
+                                            <?php foreach($unidades as $u){?>
+                                                <option value="<?=$u['id'];?>"><?=$u['nome']?></option>
+                                            <?php }?>
+                                        <?php endif;?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
                                     <label for="datanascimento">Data de nascimento</label>
-                                    <input type="date" name="datanascimento" class="form-control" id="datanascimento" aria-describedby="datanascimentoHelp">
+                                    <input type="date" name="datanascimento" required class="form-control" id="datanascimento" aria-describedby="datanascimentoHelp">
                                     <small id="datanascimentoHELP" class="form-text text-muted">campo obrigatório</small>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="senha">Telefone</label>
-                                    <input type="text"  name="telefone" class="form-control" id="telefone" aria-describedby="telefoneHelp" placeholder="Digite o telefone">
+                                    <input type="text"  name="telefone" required class="form-control" id="telefone" aria-describedby="telefoneHelp" placeholder="Digite o telefone">
                                     <small id="telHELP" class="form-text text-muted">campo obrigatório</small>
                                 </div>
                             </div>
@@ -92,7 +117,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="created_at">Data de inicio quarentena</label>
-                                    <input type="date" name="data_inicio_quarentena" class="form-control" id="data_inicio_quarentena" aria-describedby="data_inicio_quarentenaHELP">
+                                    <input type="date" name="data_inicio_quarentena" required class="form-control" id="data_inicio_quarentena" aria-describedby="data_inicio_quarentenaHELP">
                                     <small id="data_inicio_quarentenaHELP" class="form-text text-muted">campo obrigatório</small>
                                 </div>
                             </div>
@@ -100,35 +125,25 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="data_fim_quarentena">Data término quarentena</label>
-                                    <input type="date" name="data_fim_quarentena" class="form-control" id="data_fim_quarentena" aria-describedby="data_fim_quarentenaHELP">
+                                    <input type="date" name="data_fim_quarentena" required class="form-control" id="data_fim_quarentena" aria-describedby="data_fim_quarentenaHELP">
                                     <small id="data_fim_quarentenaHELP" class="form-text text-muted">campo obrigatório</small>
                                 </div>
                             </div>
-
-
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="numero_familiares">Número de familiares</label>
-                                    <input type="text"  name="total_familiares" class="form-control" id="numero_familiares" aria-describedby="numeroFamiliaresHELP" placeholder="Digite o número de familiares">
-                                    <small id="numeroFamiliaresHELP" class="form-text text-muted">campo obrigatório</small>
-                                </div>
-                            </div>
-                        </div>
+
 
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label for="senha">Rua</label>
-                                    <input type="text"  name="rua" class="form-control" id="rua" aria-describedby="ruaHelp" placeholder="Digite o endereço da rua">
+                                    <input type="text"  name="rua" class="form-control" required id="rua" aria-describedby="ruaHelp" placeholder="Digite o endereço da rua">
                                     <small id="ruaHELP" class="form-text text-muted">campo obrigatório</small>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="senha">Número</label>
-                                    <input type="number"  name="numero" class="form-control" id="numeroCasa" aria-describedby="telefoneHelp" placeholder="Digite o número da casa">
+                                    <input type="number" name="numero" required class="form-control" id="numero" aria-describedby="telefoneHelp" placeholder="Digite o número da casa">
                                     <small id="telHELP" class="form-text text-muted">campo obrigatório</small>
                                 </div>
                             </div>
@@ -239,6 +254,12 @@
     function initMap() {
         //local inicial do mapa
         var inicial = {lat: -28.715051, lng: -51.931089};
+
+        var cidade = "<?= $session['cidade']; ?>";
+        var estado = "<?= $session['estado']; ?>";
+        geocoder = new google.maps.Geocoder();
+        address = cidade + ", " + estado;
+
         //criando mapa
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15,
@@ -275,6 +296,9 @@
                 }
             }
         });
+
+
+
 //funcao para adicionar marker no mapa
         function placeMarker(location, cor) {
             marker = new google.maps.Marker({
@@ -312,9 +336,20 @@
             };
         }
     }
+
+    function SetMapAddress(address) {  // "London, UK" for example
+        var geocoder = new google.maps.Geocoder();
+        if (geocoder) {
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.fitBounds(results[0].geometry.viewport);
+                }
+            });
+        }
+    }
     $(document).ready(function() {
         $( "#cadDoenca" ).hide();
-
+        SetMapAddress(address);
         $('#cadastroModal').modal({backdrop: 'static', keyboard: false})
         $('#cadastroModal').modal('show');
 
