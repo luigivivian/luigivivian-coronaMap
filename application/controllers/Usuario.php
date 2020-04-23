@@ -149,4 +149,9 @@ class Usuario extends CI_Controller{
 			}
 		}
 	}
+
+	public function atualizarUnidades($idCidade){
+        $dados = $this->m_unidade->atualizarDadosUnidades($idCidade);
+        return var_dump($dados);
+    }
 }
