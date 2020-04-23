@@ -94,10 +94,10 @@ class Paciente extends CI_Controller{
 			$pacientes = $this->m_paciente->get(null , $id_cidade);
 			$dados['lista'] = true;
 			$dados['pacientes'] = $pacientes;
+			$dados['total_pacientes_cadastrados'] = !empty($pacientes) ? count($pacientes) : 0;
             return $this->template->load('app', 'paciente/editar', $dados);
 		}else{
 			$paciente = $this->m_paciente->get($id, $id_cidade);
-
 			$dados['condicoes'] = $this->m_paciente->getCondicao();
 			$dados['corPino'] = $paciente['cor'];
 			$dados['lista'] = false;

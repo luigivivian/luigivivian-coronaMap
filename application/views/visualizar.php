@@ -293,7 +293,7 @@
 
 //funcao para adicionar marker no mapa
 		function placeMarker(location, cor, dados) {
-			console.log(dados)
+
             var dataFimQuarentena = new Date(dados.data_fim_quarentena).toLocaleDateString('pt-BR', {timeZone: 'UTC'});
 			var contentString = '<div id="content">'+
 				'<div id="siteNotice">'+

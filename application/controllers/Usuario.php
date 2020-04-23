@@ -94,7 +94,8 @@ class Usuario extends CI_Controller{
 	public function logout(){
 		$this->session->sess_destroy();
         $dados['estados'] = $this->m_estado->getAll();
-		$this->load->view('usuario/login', $dados);
+
+		return redirect('inicio/cidade');
 	}
 	public function logar()
 	{

@@ -23,6 +23,10 @@
         </a>
     </div>
 
+    <div class="mt-3 text-center">
+        <h4><b>Número total de casos cadastrados: <?= $total_pacientes_cadastrados?></b></h4>
+    </div>
+
 <!--    --><?php //var_dump($pacientes);?>
     <?php if($lista){?>
         <?php if($pacientes){?>

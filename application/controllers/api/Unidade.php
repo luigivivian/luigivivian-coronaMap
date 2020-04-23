@@ -81,20 +81,20 @@ class Unidade extends REST_Controller {
         $this->response(array('response' => $query), 200); //retorna estado da operaçao
 	}
 
-	public function index_put($id){
+    public function index_put($id){
 
-		if(!$this->put() || !$id){
-			$this->response(null, 400);
-		}else{
-			$query = $this->m_paciente->update($id, $this->put());
+        if(!$this->put() || !$id){
+            $this->response(null, 400);
+        }else{
+            $query = $this->m_unidade->update($id, $this->put());
 
-			if(!is_null($query)){
-				$this->response(array('response' => $query), 200);
-			}else{
-				$this->response(array('error', 'Erro no servidor'), 400);
-			}
-		}
-	}
+            if(!is_null($query)){
+                $this->response(array('response' => $query), 200);
+            }else{
+                $this->response(array('error', 'Erro no servidor'), 400);
+            }
+        }
+    }
 
 
 }

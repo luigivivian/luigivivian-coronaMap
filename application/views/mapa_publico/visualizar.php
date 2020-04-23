@@ -63,21 +63,21 @@
         <div id="map">
         </div>
 
-        <div class="col col-md-8 offset-md-2">
+        <div class="col col-md-6 offset-md-5">
             <div class="row mt-2" id="optionsBox">
-                <div class="col col-md-8" id="itensBox">
+                <div class="col col-md-12" id="itensBox">
                     <div>
                         <div class="input-group-prepend">
                             <div class="col">
-                                <input class="form-control tags" style="width: 40vmax;" id="endereco" name="endereco" type="text" placeholder="Ex: Av. Arthur Oscar - Centro, Serafina Corrêa" required>
-                                <input class="form-control" id="end" name="end" type="text" hidden>
+                                <input hidden class="form-control tags" style="width: 40vmax;" id="endereco" name="endereco" type="text" placeholder="Ex: Av. Arthur Oscar - Centro, Serafina Corrêa" required>
+                                <input hidden class="form-control" id="end" name="end" type="text" hidden>
                             </div>
-                            <div class="col">
-                                <button type="button" id="btnEndereco" class="btn btn-success"/>Mostrar no mapa</button>
-                            </div>
-                            <div class="col">
-                                <a href="<?= base_url('/usuario/index');?>" class="btn btn-primary">Logar</a>
-                            </div>
+<!--                            <div class="col">-->
+<!--                                <button type="button" id="btnEndereco" class="btn btn-success"/>Mostrar no mapa</button>-->
+<!--                            </div>-->
+                        </div>
+                        <div class="col">
+                            <a href="<?= base_url('/usuario/index');?>" class="btn btn-outline-danger">Acessar área administrativa</a>
                         </div>
                     </div>
 
@@ -223,7 +223,7 @@
                 '<div id="bodyContent">'+
                 '<p>Casos <span class="text-warning"><b>Suspeitos</b>:</span> '+dados.total_pacientes_suspeitos+'</p>'+
                 '<p>Casos <span class="text-danger"><b>Confirmados</b>: </span>'+dados.total_pacientes_confirmados+'</p>'+
-                '<p>Casos <span class="text-success"><b>Curados</b></span>: '+dados.total_pacientes_curados+'</p>'+
+                '<p>Casos <span class="text-success"><b>Curados / Descartados</b></span>: '+dados.total_pacientes_curados+'</p>'+
                 '</div>'+
                 '</div>';
             var infowindow = new google.maps.InfoWindow({
