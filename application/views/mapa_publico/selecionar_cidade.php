@@ -38,12 +38,12 @@
 
 <div class="container-fluid" id="conteudo">
     <!--mapa-->
-    <div class="col pt-lg-6">
-        <div class="col col-md-4 offset-md-4" id="box">
+    <div class="col mt-6 pt-lg-6">
+        <div class="col col-md-4 offset-md-4 col-sm-12" id="box">
+            <div class="col col-sm-12">
+                <h3>Em qual cidade você está ?</h3>
+            </div>
             <div class="row">
-                <div class="col col-sm-12">
-                    <h3>Em qual cidade você está ?</h3>
-                </div>
                 <div class="col col-sm-12">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Selecione seu estado</label>
@@ -57,6 +57,7 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="col col-sm-12">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Selecione sua cidade</label>
@@ -65,12 +66,14 @@
                         </select>
                     </div>
                 </div>
+                <div class="col mt-6 col-md-12">
+                    <a class="btn btn-outline-danger btn-block" href="<?= base_url('/usuario')?>">Acessar área administrativa</a>
+                </div>
             </div>
+
         </div>
 
-        <div class="col col-md-3 offset-md-5 offset-sm-0 col-sm-12 mt-5">
-            <a class="btn btn-outline-danger" href="<?= base_url('/usuario')?>">Acessar área administrativa</a>
-        </div>
+
     </div>
 
     <footer class="page-footer" role="contentinfo" style="position: fixed; bottom: 0; width: 100%">

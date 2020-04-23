@@ -158,7 +158,7 @@
                 dataType:'json',
                 type:"GET",
             }).done(function(data) {
-                console.log(data['response']);
+
                 var i;
                 for (i = 0; i < data['response'].length; i++) {
                      var myLatLng = {lat: parseFloat(data['response'][i]['lat']), lng: parseFloat(data['response'][i]['lng'])};
@@ -192,7 +192,7 @@
                     }
                     toastr.warning("Nenhum paciente cadastrado !");
                 }
-                console.log(data['response']);
+
             });
         }
 
@@ -214,8 +214,7 @@
 
 //funcao para adicionar marker no mapa
         function placeMarker(location, cor, dados) {
-            console.log('teste');
-            console.log(dados);
+
             var contentString = '<div id="content">'+
                 '<div id="siteNotice">'+
                 '</div>'+
@@ -290,7 +289,7 @@
                 if (status == google.maps.GeocoderStatus.OK) {
                     map.fitBounds(results[0].geometry.viewport);
                     var location = results[0].geometry.location;
-                    console.log(location);
+
                     map.setCenter(location);
                     map.setZoom(15);
                 }
