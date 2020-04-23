@@ -21,7 +21,7 @@
 <style>
 
     #map {
-        height: 98vmin;
+        height: 93vmin;
         width: 100%;
     }
     html, body {
@@ -87,7 +87,7 @@
         </div>
 
     <?php else: ?>
-        <div id="map" style="width: 100%; min-height: 95vh">
+        <div id="map" style="width: 100%; min-height: 93vh">
         </div>
     <?php endif; ?>
 

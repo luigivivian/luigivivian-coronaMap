@@ -23,7 +23,7 @@ class Usuario extends CI_Controller{
 		if($mensagem)
 		    $dados['mensagem'] = $mensagem;
 		$dados['estados'] = $this->m_estado->getAll();
-		$this->load->view('usuario/login', $dados);
+        return  $this->template->load('app', 'usuario/login', $dados);
 	}
 
 	///cadusuario

@@ -23,6 +23,12 @@
     -moz-box-shadow: 10px 0px 132px 0px rgba(0,0,0,0.39);
     box-shadow: 10px 0px 132px 0px rgba(0,0,0,0.39);
 }
+
+footer{
+
+    position: fixed !important;
+    bottom:0px;
+}
 </style>
 <body>
 

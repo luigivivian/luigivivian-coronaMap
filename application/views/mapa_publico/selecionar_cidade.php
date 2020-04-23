@@ -31,6 +31,17 @@
         border-color: gray;
     }
 
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    footer{
+
+        position: fixed !important;
+        bottom:0px;
+    }
+
 </style>
 <body>
 
@@ -76,12 +87,6 @@
 
     </div>
 
-    <footer class="page-footer" role="contentinfo" style="position: fixed; bottom: 0; width: 100%">
-        <div class="d-flex align-items-center flex-1 text-muted">
-            <span class="hidden-md-down fw-700">2020 © Corona Map by&nbsp;</span>
-            <a href="https://www.linkedin.com/in/luigi-vivian-44752b16b/" class='text-primary fw-500' target='_blank'>Luigi Vivian | UPF</a>
-        </div>
-    </footer>
 </div>
 
 

@@ -33,6 +33,7 @@
 </div>
 
 
+
 <p id="js-color-profile" class="d-none">
     <span class="color-primary-50"></span>
     <span class="color-primary-100"></span>
@@ -101,6 +102,11 @@
 <script src="<?= base_url('/assets/js/app.bundle.js');?>"></script>
 <script src="<?= base_url('/assets/js/moment.js');?>"></script>
 
-
+<!-- BEGIN Page Footer -->
+<footer class="page-footer" role="contentinfo" style="position: relative; bottom: 0px">
+    <div class="col d-flex align-items-center flex-1 text-muted mt-1 centered">
+        <a href="https://www.linkedin.com/in/luigi-vivian-44752b16b/" class='text-primary text-center fw-500' target='_blank'>2020 © Corona Map © Luigi Vivian | UPF</a>
+    </div>
+</footer>
 </body>
 </html>

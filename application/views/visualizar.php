@@ -49,6 +49,9 @@
 	#condicao{
 		width: 80%;
 	}
+    footer{
+        visibility: unset;
+    }
 
 </style>
 <body>
@@ -110,15 +113,15 @@
 	<div class="row mt-2" id="optionsBox">
 		<div class="col"></div>
 		<div class="col-md-8" id="itensBox">
-			<div class="input-group-prepend">
+			<div class="input-group-prepend input-group-sm">
 				<label class="input-group-text">Digite um endereço:</label>
 				<input class="form-control tags" style="width: 40vmax;" id="endereco" name="endereco" type="text" placeholder="Ex: Av. Arthur Oscar - Centro, Serafina Corrêa" required>
 				<input class="form-control" id="end" name="end" type="text" hidden>
-				<button type="button" id="btnEndereco" style="width: 40vmax;" class="btn btn-success ml-xl-2"/>Mostrar no mapa</button>
+				<button type="button" id="btnEndereco" style="width: 40vmax;" class="btn btn-success btn-sm ml-xl-2"/>Mostrar no mapa</button>
 			</div>
 
 			<div class="mt-2">
-				<a href="<?= base_url('inicio/cadastrar'); ?>" class="btn btn-block btn-primary">
+				<a href="<?= base_url('inicio/cadastrar'); ?>" class="btn btn-block btn-primary btn-sm">
 					Cadastrar Paciente
 				</a>
 			</div>
